@@ -1,0 +1,3 @@
+* Portable Impedance Tomography System
+This repository supports the UAH CPE 621 Advanced Embedded Systems project centered around the [[http://www.analog.com/media/en/technical-documentation/data-sheets/AD5933.pdf][Analog Devices AD5933 Impedance Analyzer]] for the use of impedance tomography.
+
