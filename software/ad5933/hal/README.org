@@ -1,0 +1,3 @@
+* Hardware Abstraction Layer 
+This folder houses the different hardware abstraction layers for device specific \(I^2C\) communication functions.
+
