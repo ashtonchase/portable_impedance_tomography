@@ -31,19 +31,13 @@
 
 #include "stdint.h"
 
-
 #define IIC_OK 0
 #define IIC_ACK 0
 #define IIC_NACK 1
 
-
-
 typedef void Iic_ConfigType;
-
 typedef void Iic_ChannelType;
-
-
-
+typedef uint8_t Iic_RegisterType;
 
 /** Initialize the IIC Device
  *
@@ -59,7 +53,9 @@ void Iic_Init(const Iic_ConfigType *Config);
  * @param 8-bit register address to receive byte from
  * @return 0 if receive was ACK'ed, 1 if NACK'ed
  */
-uint8_t Iic_RxByte(const uint8_t addr,const uint8_t reg,uint8_t *rxValue );
+uint8_t Iic_RxByte(const uint8_t addr,
+		   const uint8_t reg,
+		   uint8_t *rxValue );
 
 
 
@@ -69,10 +65,13 @@ uint8_t Iic_RxByte(const uint8_t addr,const uint8_t reg,uint8_t *rxValue );
  * @param 8-bit register address to transmit byte to 
  * @return 0 if receive was ACK'ed, 1 if NACK'ed
  */
-uint8_t Iic_TxByte(const uint8_t addr,const uint8_t reg,const uint8_t txValue);
+uint8_t Iic_TxByte(const uint8_t addr,
+		   const uint8_t reg,
+		   const uint8_t txValue);
 
 
-void Iic_RegisterWrite(Iic_RegisterType Register, uint32_t RegisterData);
+void Iic_RegisterWrite(Iic_RegisterType Register,
+		       uint32_t RegisterData);
 
 uint32_t Iic_RegisterRead(Iic_RegisterType Register);
 

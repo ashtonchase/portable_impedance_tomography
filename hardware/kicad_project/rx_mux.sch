@@ -100,7 +100,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 7
+Sheet 6 8
 Title "Portable Impedance Tomography"
 Date "2017-09-10"
 Rev "NEW"
@@ -111,111 +111,46 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L ADG1209 U?
+L ADG1209 U3
 U 1 1 59B6BC3D
 P 5950 3850
-F 0 "U?" H 6200 4650 50  0000 C CNN
-F 1 "ADG1209" H 5650 4650 50  0000 C CNN
-F 2 "" H 300 1100 60  0001 C CNN
+AR Path="/59B584EE/59B6BC3D" Ref="U3"  Part="1" 
+AR Path="/59B6F87D/59B6BC3D" Ref="U9"  Part="1" 
+F 0 "U3" H 6200 4650 50  0000 C CNN
+F 1 "ADG1209" H 5950 3850 50  0000 C CNN
+F 2 "Housings_SSOP:TSSOP-16_4.4x5mm_Pitch0.65mm" H 300 1100 60  0001 C CNN
 F 3 "" H 300 1100 60  0001 C CNN
+F 4 "ADG1209YRUZ" H 5650 3100 30  0000 C CNN "mfg_pn"
+F 5 "Analog Devices" H 5950 3850 60  0001 C CNN "mfg"
 	1    5950 3850
 	-1   0    0    -1  
 $EndComp
-$Comp
-L +5V #PWR?
-U 1 1 59B6BCF1
-P 5950 2050
-F 0 "#PWR?" H -50 -250 50  0001 C CNN
-F 1 "+5V" H 6000 2250 50  0000 C CNN
-F 2 "" H -50 -100 50  0001 C CNN
-F 3 "" H -50 -100 50  0001 C CNN
-	1    5950 2050
-	-1   0    0    -1  
-$EndComp
-$Comp
-L GNDA #PWR?
-U 1 1 59B6BD3A
-P 5450 5000
-F 0 "#PWR?" H 5500 5050 50  0001 C CNN
-F 1 "GNDA" H 5500 4800 50  0000 C CNN
-F 2 "" H -850 250 50  0001 C CNN
-F 3 "" H -850 250 50  0001 C CNN
-	1    5450 5000
-	1    0    0    -1  
-$EndComp
-$Comp
-L -5V #PWR?
-U 1 1 59B6C16C
-P 5950 5750
-F 0 "#PWR?" H 6000 5800 50  0001 C CNN
-F 1 "-5V" H 5950 5950 50  0000 C CNN
-F 2 "" H -150 1150 50  0001 C CNN
-F 3 "" H -150 1150 50  0001 C CNN
-	1    5950 5750
-	1    0    0    1   
-$EndComp
 Wire Wire Line
 	5950 2050 5950 3050
-Wire Wire Line
-	5950 4650 5950 5750
 Wire Wire Line
 	6450 2400 6450 2250
 Wire Wire Line
 	6450 2250 5950 2250
 Connection ~ 5950 2250
 $Comp
-L C C?
+L C C5
 U 1 1 59B6C44C
 P 6450 2550
-F 0 "C?" H 6600 2600 50  0000 L CNN
+AR Path="/59B584EE/59B6C44C" Ref="C5"  Part="1" 
+AR Path="/59B6F87D/59B6C44C" Ref="C20"  Part="1" 
+F 0 "C5" H 6600 2650 50  0000 L CNN
 F 1 "0.1u" H 6600 2550 50  0000 L CNN
-F 2 "" H 38  -100 50  0001 C CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 38  -100 50  0001 C CNN
 F 3 "" H 0   50  50  0001 C CNN
+F 4 "C0603C107PAC" H 6600 2500 30  0000 L CNN "mfg_pn"
+F 5 "KEMET" H 6450 2550 30  0001 C CNN "mfg"
 	1    6450 2550
-	-1   0    0    -1  
-$EndComp
-$Comp
-L GNDA #PWR?
-U 1 1 59B6C496
-P 6450 2750
-F 0 "#PWR?" H 50  0   50  0001 C CNN
-F 1 "GNDA" H 6500 2550 50  0000 C CNN
-F 2 "" H 50  250 50  0001 C CNN
-F 3 "" H 50  250 50  0001 C CNN
-	1    6450 2750
-	-1   0    0    -1  
+	1    0    0    -1  
 $EndComp
 Wire Wire Line
 	6450 2750 6450 2700
-$Comp
-L C C?
-U 1 1 59B6C4DE
-P 6400 5100
-F 0 "C?" H 6550 5150 50  0000 L CNN
-F 1 "0.1u" H 6550 5100 50  0000 L CNN
-F 2 "" H 588 150 50  0001 C CNN
-F 3 "" H 550 300 50  0001 C CNN
-	1    6400 5100
-	-1   0    0    -1  
-$EndComp
 Wire Wire Line
-	6400 4950 6400 4750
-Wire Wire Line
-	6400 4750 5950 4750
-Connection ~ 5950 4750
-$Comp
-L GNDA #PWR?
-U 1 1 59B6C52F
-P 6400 5400
-F 0 "#PWR?" H 6450 5450 50  0001 C CNN
-F 1 "GNDA" H 6450 5200 50  0000 C CNN
-F 2 "" H 750 250 50  0001 C CNN
-F 3 "" H 750 250 50  0001 C CNN
-	1    6400 5400
-	-1   0    0    -1  
-$EndComp
-Wire Wire Line
-	6400 5400 6400 5250
+	5950 4800 5950 4650
 Wire Wire Line
 	5750 4650 5750 4850
 Wire Wire Line
@@ -259,91 +194,18 @@ SA3
 Text Label 7050 3950 2    50   ~ 0
 SA4
 $Comp
-L Conn_Coaxial J?
+L Conn_Coaxial J1
 U 1 1 59B6D676
 P 9450 1250
-F 0 "J?" H 9550 1250 50  0000 L CNN
-F 1 "Conn_Coaxial" H 9550 1150 50  0000 L CNN
-F 2 "" H 1700 -1450 50  0001 C CNN
+AR Path="/59B584EE/59B6D676" Ref="J1"  Part="1" 
+AR Path="/59B6F87D/59B6D676" Ref="J9"  Part="1" 
+F 0 "J1" H 9550 1250 50  0000 L CNN
+F 1 "UMC" H 9550 1150 50  0000 L CNN
+F 2 "Connectors_Molex:Molex_Microcoaxial_RF" H 1700 -1450 50  0001 C CNN
 F 3 "" H 1700 -1450 50  0001 C CNN
+F 4 "1909763-1" H 9800 1050 50  0000 C CNN "mfg_pn"
+F 5 "TE" H 9450 1250 50  0001 C CNN "mfg"
 	1    9450 1250
-	1    0    0    -1  
-$EndComp
-$Comp
-L Conn_Coaxial J?
-U 1 1 59B6D72A
-P 9450 1900
-F 0 "J?" H 9550 1900 50  0000 L CNN
-F 1 "Conn_Coaxial" H 9550 1800 50  0000 L CNN
-F 2 "" H 1700 -800 50  0001 C CNN
-F 3 "" H 1700 -800 50  0001 C CNN
-	1    9450 1900
-	1    0    0    -1  
-$EndComp
-$Comp
-L Conn_Coaxial J?
-U 1 1 59B6D762
-P 9450 2400
-F 0 "J?" H 9550 2400 50  0000 L CNN
-F 1 "Conn_Coaxial" H 9550 2300 50  0000 L CNN
-F 2 "" H 1700 -300 50  0001 C CNN
-F 3 "" H 1700 -300 50  0001 C CNN
-	1    9450 2400
-	1    0    0    -1  
-$EndComp
-$Comp
-L Conn_Coaxial J?
-U 1 1 59B6D792
-P 9450 2950
-F 0 "J?" H 9550 2950 50  0000 L CNN
-F 1 "Conn_Coaxial" H 9550 2850 50  0000 L CNN
-F 2 "" H 1700 250 50  0001 C CNN
-F 3 "" H 1700 250 50  0001 C CNN
-	1    9450 2950
-	1    0    0    -1  
-$EndComp
-$Comp
-L Conn_Coaxial J?
-U 1 1 59B6D7C6
-P 9450 4150
-F 0 "J?" H 9550 4150 50  0000 L CNN
-F 1 "Conn_Coaxial" H 9550 4050 50  0000 L CNN
-F 2 "" H 1700 1450 50  0001 C CNN
-F 3 "" H 1700 1450 50  0001 C CNN
-	1    9450 4150
-	1    0    0    -1  
-$EndComp
-$Comp
-L Conn_Coaxial J?
-U 1 1 59B6D7F8
-P 9450 4700
-F 0 "J?" H 9550 4700 50  0000 L CNN
-F 1 "Conn_Coaxial" H 9550 4600 50  0000 L CNN
-F 2 "" H 1700 2000 50  0001 C CNN
-F 3 "" H 1700 2000 50  0001 C CNN
-	1    9450 4700
-	1    0    0    -1  
-$EndComp
-$Comp
-L Conn_Coaxial J?
-U 1 1 59B6D830
-P 9450 5200
-F 0 "J?" H 9550 5200 50  0000 L CNN
-F 1 "Conn_Coaxial" H 9550 5100 50  0000 L CNN
-F 2 "" H 1700 2500 50  0001 C CNN
-F 3 "" H 1700 2500 50  0001 C CNN
-	1    9450 5200
-	1    0    0    -1  
-$EndComp
-$Comp
-L Conn_Coaxial J?
-U 1 1 59B6D88E
-P 9450 5800
-F 0 "J?" H 9550 5800 50  0000 L CNN
-F 1 "Conn_Coaxial" H 9550 5700 50  0000 L CNN
-F 2 "" H 1700 3100 50  0001 C CNN
-F 3 "" H 1700 3100 50  0001 C CNN
-	1    9450 5800
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -427,4 +289,161 @@ Wire Wire Line
 Wire Wire Line
 	9450 1600 9000 1600
 Connection ~ 9000 1600
+$Comp
+L Conn_Coaxial J2
+U 1 1 59C83377
+P 9450 1900
+AR Path="/59B584EE/59C83377" Ref="J2"  Part="1" 
+AR Path="/59B6F87D/59C83377" Ref="J10"  Part="1" 
+F 0 "J2" H 9550 1900 50  0000 L CNN
+F 1 "UMC" H 9550 1800 50  0000 L CNN
+F 2 "Connectors_Molex:Molex_Microcoaxial_RF" H 1700 -800 50  0001 C CNN
+F 3 "" H 1700 -800 50  0001 C CNN
+F 4 "1909763-1" H 9800 1700 50  0000 C CNN "mfg_pn"
+F 5 "TE" H 9450 1900 50  0001 C CNN "mfg"
+	1    9450 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_Coaxial J3
+U 1 1 59C833B1
+P 9450 2400
+AR Path="/59B584EE/59C833B1" Ref="J3"  Part="1" 
+AR Path="/59B6F87D/59C833B1" Ref="J11"  Part="1" 
+F 0 "J3" H 9550 2400 50  0000 L CNN
+F 1 "UMC" H 9550 2300 50  0000 L CNN
+F 2 "Connectors_Molex:Molex_Microcoaxial_RF" H 1700 -300 50  0001 C CNN
+F 3 "" H 1700 -300 50  0001 C CNN
+F 4 "1909763-1" H 9800 2200 50  0000 C CNN "mfg_pn"
+F 5 "TE" H 9450 2400 50  0001 C CNN "mfg"
+	1    9450 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_Coaxial J4
+U 1 1 59C833E5
+P 9450 2950
+AR Path="/59B584EE/59C833E5" Ref="J4"  Part="1" 
+AR Path="/59B6F87D/59C833E5" Ref="J12"  Part="1" 
+F 0 "J4" H 9550 2950 50  0000 L CNN
+F 1 "UMC" H 9550 2850 50  0000 L CNN
+F 2 "Connectors_Molex:Molex_Microcoaxial_RF" H 1700 250 50  0001 C CNN
+F 3 "" H 1700 250 50  0001 C CNN
+F 4 "1909763-1" H 9800 2750 50  0000 C CNN "mfg_pn"
+F 5 "TE" H 9450 2950 50  0001 C CNN "mfg"
+	1    9450 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_Coaxial J5
+U 1 1 59C83419
+P 9450 4150
+AR Path="/59B584EE/59C83419" Ref="J5"  Part="1" 
+AR Path="/59B6F87D/59C83419" Ref="J13"  Part="1" 
+F 0 "J5" H 9550 4150 50  0000 L CNN
+F 1 "UMC" H 9550 4050 50  0000 L CNN
+F 2 "Connectors_Molex:Molex_Microcoaxial_RF" H 1700 1450 50  0001 C CNN
+F 3 "" H 1700 1450 50  0001 C CNN
+F 4 "1909763-1" H 9800 3950 50  0000 C CNN "mfg_pn"
+F 5 "TE" H 9450 4150 50  0001 C CNN "mfg"
+	1    9450 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_Coaxial J6
+U 1 1 59C834C7
+P 9450 4700
+AR Path="/59B584EE/59C834C7" Ref="J6"  Part="1" 
+AR Path="/59B6F87D/59C834C7" Ref="J14"  Part="1" 
+F 0 "J6" H 9550 4700 50  0000 L CNN
+F 1 "UMC" H 9550 4600 50  0000 L CNN
+F 2 "Connectors_Molex:Molex_Microcoaxial_RF" H 1700 2000 50  0001 C CNN
+F 3 "" H 1700 2000 50  0001 C CNN
+F 4 "1909763-1" H 9800 4500 50  0000 C CNN "mfg_pn"
+F 5 "TE" H 9450 4700 50  0001 C CNN "mfg"
+	1    9450 4700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_Coaxial J7
+U 1 1 59C834FF
+P 9450 5200
+AR Path="/59B584EE/59C834FF" Ref="J7"  Part="1" 
+AR Path="/59B6F87D/59C834FF" Ref="J15"  Part="1" 
+F 0 "J7" H 9550 5200 50  0000 L CNN
+F 1 "UMC" H 9550 5100 50  0000 L CNN
+F 2 "Connectors_Molex:Molex_Microcoaxial_RF" H 1700 2500 50  0001 C CNN
+F 3 "" H 1700 2500 50  0001 C CNN
+F 4 "1909763-1" H 9800 5000 50  0000 C CNN "mfg_pn"
+F 5 "TE" H 9450 5200 50  0001 C CNN "mfg"
+	1    9450 5200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_Coaxial J8
+U 1 1 59C8353B
+P 9450 5800
+AR Path="/59B584EE/59C8353B" Ref="J8"  Part="1" 
+AR Path="/59B6F87D/59C8353B" Ref="J16"  Part="1" 
+F 0 "J8" H 9550 5800 50  0000 L CNN
+F 1 "UMC" H 9550 5700 50  0000 L CNN
+F 2 "Connectors_Molex:Molex_Microcoaxial_RF" H 1700 3100 50  0001 C CNN
+F 3 "" H 1700 3100 50  0001 C CNN
+F 4 "1909763-1" H 9800 5600 50  0000 C CNN "mfg_pn"
+F 5 "TE" H 9450 5800 50  0001 C CNN "mfg"
+	1    9450 5800
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR08
+U 1 1 59D8B402
+P 6450 2750
+AR Path="/59B584EE/59D8B402" Ref="#PWR08"  Part="1" 
+AR Path="/59B6F87D/59D8B402" Ref="#PWR036"  Part="1" 
+F 0 "#PWR08" H 50  -300 50  0001 C CNN
+F 1 "GND" H 6500 2550 50  0000 C CNN
+F 2 "" H 50  -50 50  0001 C CNN
+F 3 "" H 50  -50 50  0001 C CNN
+	1    6450 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR09
+U 1 1 59D8B4EC
+P 5950 4800
+AR Path="/59B584EE/59D8B4EC" Ref="#PWR09"  Part="1" 
+AR Path="/59B6F87D/59D8B4EC" Ref="#PWR037"  Part="1" 
+F 0 "#PWR09" H 6000 4850 50  0001 C CNN
+F 1 "GND" H 6000 4600 50  0000 C CNN
+F 2 "" H 500 -250 50  0001 C CNN
+F 3 "" H 500 -250 50  0001 C CNN
+	1    5950 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR010
+U 1 1 59D8B514
+P 5450 5000
+AR Path="/59B584EE/59D8B514" Ref="#PWR010"  Part="1" 
+AR Path="/59B6F87D/59D8B514" Ref="#PWR038"  Part="1" 
+F 0 "#PWR010" H 5500 5050 50  0001 C CNN
+F 1 "GND" H 5500 4800 50  0000 C CNN
+F 2 "" H 0   -50 50  0001 C CNN
+F 3 "" H 0   -50 50  0001 C CNN
+	1    5450 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L VCC #PWR011
+U 1 1 59D8B5C2
+P 5950 2050
+AR Path="/59B584EE/59D8B5C2" Ref="#PWR011"  Part="1" 
+AR Path="/59B6F87D/59D8B5C2" Ref="#PWR039"  Part="1" 
+F 0 "#PWR011" H 0   -100 50  0001 C CNN
+F 1 "VCC" H 6000 2250 50  0000 C CNN
+F 2 "" H 0   50  50  0001 C CNN
+F 3 "" H 0   50  50  0001 C CNN
+	1    5950 2050
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

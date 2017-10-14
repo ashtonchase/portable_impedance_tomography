@@ -30,7 +30,6 @@
 #define AD5933_H
 
 #include "stdint.h"
-#include "hal/iic_hal.h"
 
 /* Register Map */
 #define REG_CONTROL 0x80
@@ -74,19 +73,20 @@
 
 /* Control Register Map */
 // Functions
-#define CONTROL_REG_NOP               (0x0000 << 12)
-#define CONTROL_REG_INIT_W_START_FREQ (0x0001 << 12)
-#define CONTROL_REG_START_FREQ_SWEEP  (0x0002 << 12)
-#define CONTROL_REG_INCR_FREQ         (0x0003 << 12)
-#define CONTROL_REG_REPEAT_FREQ       (0x0004 << 12)
-#define CONTROL_REG_MEAS_TEMP         (0x0009 << 12)
-#define CONTROL_REG_PWR_DOWN          (0x000A << 12)
-#define CONTROL_REG_STANDBY           (0x000B << 12)
+#define CONTROL_REG_NOP               (0x00 << 4)
+#define CONTROL_REG_INIT_W_START_FREQ (0x01 << 4)
+#define CONTROL_REG_START_FREQ_SWEEP  (0x02 << 4)
+#define CONTROL_REG_INCR_FREQ         (0x03 << 4)
+#define CONTROL_REG_REPEAT_FREQ       (0x04 << 4)
+#define CONTROL_REG_MEAS_TEMP         (0x09 << 4)
+#define CONTROL_REG_PWR_DOWN          (0x0A << 4)
+#define CONTROL_REG_STANDBY           (0x0B << 4)
 // Output Voltage Range
-#define CONTROL_OUT_VOLT_2VPP    (0x0000 << 9)
-#define CONTROL_OUT_VOLT_200MVPP (0x0001 << 9)
-#define CONTROL_OUT_VOLT_400MVPP (0x0002 << 9)
-#define CONTROL_OUT_VOLT_1VPP    (0x0003 << 9)
+#define CONTROL_OUT_VOLT_BITMASK 0x02
+#define CONTROL_OUT_VOLT_2VPP    (0x00 << 1)
+#define CONTROL_OUT_VOLT_200MVPP (0x01 << 1)
+#define CONTROL_OUT_VOLT_400MVPP (0x02 << 1)
+#define CONTROL_OUT_VOLT_1VPP    (0x03 << 1)
 //PGA Gain
 #define CONTROL_PGA_x5 (0x0000 << 8)
 #define CONTROL_PGA_x1 (0x0001 << 8)
@@ -106,34 +106,41 @@
 typedef struct ad5933_deviceConfig{
 
   uint32_t clockFreq;
+  uint8_t address;
   
 } ad5933_deviceConfig ;
 
 
-uint8_t ad5933_Init( );
+uint8_t ad5933_Init( ad5933_deviceConfig *config);
 
+uint8_t ad5933_PerformFrequencySweep( ad5933_deviceConfig *config,
+				     uint32_t startFreq,
+				     uint32_t incrementFreq,
+				     uint16_t numOfIncrements,
+				     uint16_t *realArray,
+				     uint16_t *imagArray);
+				     
 
-void ad5933_ConvertFreq(const ad5933_deviceConfig *config,
+uint8_t ad5933_ConvertFreq( ad5933_deviceConfig *config,
 			uint32_t desiredFreq,
-			uint8_t *freqMSB,
+			uint8_t *freqMsb,
 			uint8_t *freqMid,
 			uint8_t *freqLsb);
 
-uint8_t ad5933_SetStartFreq(const ad5933_deviceConfig *config,
+uint8_t ad5933_SetStartFreq( ad5933_deviceConfig *config,
 			    uint32_t desiredFreq);
 
-uint8_t ad5933_SetIncrFreq(const ad5933_deviceConfig *config,
+uint8_t ad5933_SetIncrFreq( ad5933_deviceConfig *config,
 			   uint32_t desiredFreq);
 
-
-uint8_t ad5933_SetIncrCount(const ad5933_deviceConfig *config,
+uint8_t ad5933_SetIncrCount( ad5933_deviceConfig *config,
 			    uint16_t incrNum);
 
-uint8_t ad5933_SetSettleTime(const ad5933_deviceConfig *config,
+uint8_t ad5933_SetSettleTime( ad5933_deviceConfig *config,
 			     uint16_t cycles,
 			     uint8_t factor);
 
-uint8_t ad5933_GetStatus(const ad5933_deviceConfig *config,
+uint8_t ad5933_GetStatus( ad5933_deviceConfig *config,
 			 uint8_t *result);
 
 
@@ -141,6 +148,25 @@ uint8_t ad9533_WaitForValidTemp(ad5933_deviceConfig *config);
 
 uint8_t ad9533_WaitForValidImpedance(ad5933_deviceConfig *config);
 
-uint8_t ad9533_WaitForSweepComplete(ad5933_deviceConfig *config){
+uint8_t ad9533_WaitForSweepComplete(ad5933_deviceConfig *config);
+
+uint8_t ad5933_ReadRealResult(ad5933_deviceConfig *config,
+			      int16_t *real);
+
+uint8_t ad5933_ReadImagResult(ad5933_deviceConfig *config,
+			      int16_t *imag);
+
+uint8_t ad5933_InitWithStartFreq(ad5933_deviceConfig *config);
+uint8_t ad5933_StartSweep(ad5933_deviceConfig *config);
+uint8_t ad5933_IncrementFreq(ad5933_deviceConfig *config);
+uint8_t ad5933_RepeatFreq(ad5933_deviceConfig *config);
+uint8_t ad5933_MeasureTemp(ad5933_deviceConfig *config);
+uint8_t ad5933_PowerDown(ad5933_deviceConfig *config);
+uint8_t ad5933_Standby(ad5933_deviceConfig *config);
+uint8_t ad5933_Stop(ad5933_deviceConfig *config);
+uint8_t ad5933_SetPGAx1(ad5933_deviceConfig *config);
+uint8_t ad5933_SetPGAx5(ad5933_deviceConfig *config);
+uint8_t ad5933_SetVoutRange(ad5933_deviceConfig *config,
+			    uint8_t range );
 
 #endif

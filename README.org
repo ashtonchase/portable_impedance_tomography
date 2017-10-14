@@ -1,3 +1,32 @@
 * Portable Impedance Tomography System
 This repository supports the UAH CPE 621 Advanced Embedded Systems project centered around the [[http://www.analog.com/media/en/technical-documentation/data-sheets/AD5933.pdf][Analog Devices AD5933 Impedance Analyzer]] for the use of impedance tomography.
 
+** Overview
+
+TBD
+
+** Repository Structure
+
+TBD
+
+** Software 
+
+Drivers are included for controlling the AD5933 module. Communication with the module is performed over I2C. The software drivers are device independent, so specific functions are to be used to map driver functionality to specific peripherals.
+
+*** Porting Guide
+
+A software porting guide is provided in [[./software/ad5933/hal/PORTING.org][PORTING GUIDLINE]]. 
+
+** PCB Design 
+
+A custom printed circuit board design is included. The design was developed in [[http://www.kicad.com][Kicad]].  The PCB project is available here [[https://github.com/ashtonchase/portable_impedance_tomography/tree/master/hardware/kicad_project][here]]. 
+
+This PCB design in available via OSH Park. The project is located [[https://oshpark.com/shared_projects/npJ3mGp4][here]]
+
+[[./hardware/kicad_project/output/top.png]]
+
+[[./hardware/kicad_project/output/bottom.png]]
+
+[[./hardware/kicad_project/output/3dtop.png]]
+
+[[./hardware/kicad_project/output/3dbottom.png]]
