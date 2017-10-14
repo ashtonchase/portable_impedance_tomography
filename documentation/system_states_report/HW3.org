@@ -1,0 +1,400 @@
+#+TITLE: Portable Impedance Tomorgraphy Design Model \\
+#+TITLE: CPE 621
+#+AUTHOR: Ashton Johnson
+#+EMAIL: acj0008@uah.edu
+#+OPTIONS: toc:nil
+#+STARTUP: indent
+#+STARTUP: showall
+
+
+ 
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+#+LATEX_HEADER_EXTRA:  \usepackage{mdframed}
+#+LATEX_HEADER_EXTRA: \BeforeBeginEnvironment{minted}{\begin{mdframed}}
+#+LATEX_HEADER_EXTRA: \AfterEndEnvironment{minted}{\end{mdframed}}
+
+
+#+Begin_Latex
+\pagebreak
+#+End_Latex
+
+* System States
+
+:STATES_DIAG_FIG:
+#+BEGIN_SRC dot :file states.png :cmdline -K dot  -T png
+digraph states{
+//splines=smooth;
+
+
+init [label="Initialize"]
+
+
+ble_disc [label="Bluetooth Client Disconnect"][style=dashed, color=blue]
+{rank=same;
+ccw [label="Client Connect Wait"]
+fail [label="System Failure"][color=red]
+
+}
+cw [label="Command Wait"]
+pc [label="Process Command"]
+
+
+cal [label="Calibrate Device"]
+
+us [label="Update Settings"]
+sa [label="Start Acquisition"]
+
+
+wa [label="Wait for Acq. Complete"]
+
+nak [label="Message Refused"]
+
+od [label="Process Data"]
+sc [label="Sweep Complete?"]
+mc [label="Mux Config Complete?"]
+um [label="Update Mux Settings"]
+if [label="Increment Frequency"]
+{rank=same;
+
+pr [label="Post Results"]
+}
+
+
+
+init->ccw 
+ccw->cw 
+ccw->ccw
+cw->pc 
+cw->cw
+pc->sa 
+pc->us 
+pc->cal 
+cal->sa 
+
+cal->nak 
+pc->nak 
+us->nak 
+
+nak->cw 
+sa->wa 
+wa->wa
+wa->od
+od->mc
+mc->{sc,um}
+um->sa
+sc->{if,pr}
+if->sa
+us->pr 
+pr->cw 
+init->fail
+fail->fail;
+
+
+rank=same
+//{cw,pc,us,sa,od,pr}->
+ble_disc:e->ccw:w;
+}
+#+END_SRC 
+#+CAPTION: State Diagram
+#+RESULTS:
+[[file:states.png]]
+
+:END:
+
+
+** Initialize
+
+*** Description
+
+When the unit is powered on the system initializes all peripherals on the processing module.
+
+*** Objectives
+
++ Initialize Registers
++ Initialize Bluetooth peripheral
++ Initialize SPI peripheral
+ 
+*** Transitions
+**** System Failure
+
+If there is a failure in the intialization of the perfi
+
+**** Client Connect Wait
+
+If all objectives pass.
+** Client Connect Wait
+*** Description
+
+Once the processing module as initialize all peripherals, including the communication module, the device will wait until a client connects to the device over Bluetooth.
+*** Objectives
+
++ Wait for client connection to be established via bluetooth
+
+*** Transitions
+
+**** Command Wait
+
+If client connection is obtained
+
+** Command Wait
+
+*** Description
+
+When a device has been connected, then wait until a command has been received from the Bluetooth client.
+
+*** Objectives
+
+Poll the BLE peripheral for a command.
+
+*** Transitions
+
+**** Process Command
+
+If a command has been received from the client.
+
+** Process Command
+*** Description
+
+When a commnad has been received from the client, the command will be parsed and the next state will depend upon command.
+
+*** Objectives
+
++ Parse the command to determine the appropriate action to take based upon the command received.
+
+*** Transitions 
+
+**** Message Refused
+
+If the mesage word is not know, the message will simply be ignored
+
+**** Calibrate Device
+**** Start Acquisition
+**** Update Settings
+** Calibrate Device
+*** Description
+
+When a calibrate device command has been received, the processing module will perform a a single 
+*** Objectives
+
++ Determine if the proper settings have been set before calibrating the device.
+
+*** Transitions 
+**** Message Refused
+
+1. If the user has not issues an update settings command at least once, the system will not be allows to calibrate. This will require
++ Output Voltage
++ PGA Gain
++ Calibration Frequency
+
+2. If the user has not supplied an acceptable reistance value to use for calibration, the system will not be allows to calibrate. 
+
+**** Start Acquisition
+
+If the system is ready to determine the system gain, get data from the AD5933.
+** Message Refused
+*** Description
+
+If a message has been refused, a response will be sent back the user
+
+*** Objectives
+
+Send Bluetooth response back to use that command was no accepted
+
+*** Transitions 
+
+**** Command Wait
+
+** Update Settings
+*** Description
+
+When a settings update has been received, the respective seting will be validated and updated. 
+*** Objectives
+
++ Parse Settings
++ Send Settings to AD5933
++ Confirm Setting Applied
+
+*** Transitions 
+
+**** Message Refused
+
+If the settings are no valid, notify user of message not accepted
+**** Post Results
+
+If setting are valid and correctly applied, post settings results back to user
+** Start Acquisition
+*** Description
+
+When a start acquisition command has been received. The device will command the start of an acquisition to the AD5933 and analog muxes.
+*** Objectives
+
++ Command Acquisition to AD5933
+*** Transitions 
+**** Wait for Acquisition Complete
+
+This will be imediately following
+
+** Wait for Acquisition Complete
+*** Description
+
+This will be a block wait state for the acquistion to complete
+*** Objectives
+
++ Read status register from AD5933
+*** Transitions 
+**** Self
+
+If the status register indicated that the acquisition is still taking place.
+**** Process Data
+
+If the AD5933 status indicated the the acquisition is complete. 
+** Process Data
+*** Description
+
+This state will gather process and store the impedance result.
+*** Objectives
+
+ + Read Real result from AD5933
+ + Read Imag result from AD5933
+ + Determine Impedance Magnitude
+ + Determine Impedance Phase
+ + Write magniture and phase to temporary array 
+*** Transitions 
+**** Mux Config Complete
+** Mux Config Complete?
+*** Description
+
+This will test to see if all of the request input/output analog mux combinations have been tested for this particular frequency.
+*** Objectives
+
++ ~for~ loop of mux combinations
+*** Transitions 
+**** Update Mux Settings
+
+Not all combinations have been exhausted at this frequency.
+**** Sweep Complete
+
+All combinations have been exhausted at this frequency.
+** Update Mux Settings
+*** Description
+
+This will configure the input/output analog muxes for the next combination
+
+*** Objectives
+
++Write analog mux address output
+
+*** Transitions 
+
+**** Start Acquisition
+** Sweep Complete?
+*** Description
+
+This will test to see if all the impedance at all of th frequency points in the sweep have been sampled.
+*** Objectives
+
++ ~for~ loop of frequency steps
+
+*** Transitions 
+
+**** Increment Frequency
+
+Freuency points remain, so increment to next frequency,
+
+**** Post Results
+
+All frequencies have been swept, so data collection is complete. 
+** Increment Frequency 
+*** Description
+
+Updates the AD5933 to the next frequency to measure impedance at
+
+*** Objectives
+
++ Send increment_frequency command to AD5933
+*** Transitions 
+**** Start Acquisition
+** Post Results
+*** Description
+Send the measurement results to the Bluetooth Client
+*** Objectives
+
++ Update BLE Characteristic with data results.
++ Reset variables used in measurment sweeps.
+*** Transitions 
+**** Command Wait
+ 
+
+
+
+#+Begin_Latex
+\pagebreak
+#+End_Latex
+
+* What information would be sufficient to define G-state of your system?
+
+Ground State Date would be the information that needs to persist between powere cycles. Possible parameters for this project would be:
++ Bluetooth Settings
+  + Device Bonding Key (not planned but possible)
++ AD5933 Settings
+  + Start Frequency
+  + Stop Frequency
+  + Frequency Increment
+  + Settle Time
+  + Output Voltage Range
+  + Input Gain
+
+* What is the protocol between the sensor and a gateway/server/personal server of your application? What is the format of the application level messaging?
+Bluetooth will be use for the primary functionality of the application. 
+
+** Client to Device Protocol
+The client to device will use a a charateristic per configuration setting. This shall include:
++ Start Frequency
++ Stop Frequency
++ Frequency Increment
++ Settle Time
++ Output Voltage Range
++ Input Gain
++ Start Acquisition
+
+** Device to Client Protocol
+The device will repond back to the client using a custom charateristic. This charactristic will have different descriptions for the following information:
++ Frequency
++ Mux Configuration
++ Magniture
++ Phase
+
+
+Additionally, for debugging the data will be transmitted over UART. The mesage will be as follows:
+
+[[./debug.png]]
+
+* What is required bandwidth of your application (average, minimum, maximum)?
+The bandwidth requirements would be inversly proportional to the desired data update rate times the number of frequency sample points if doing a frequency sweep of impedance. 
+
+\[BANDWIDTH=\frac{Data_{perFrame}}{Update Rate}\]
+
+
+
+\[BANDWIDTH=\frac{NumberOfFrequencyPoints*MuxCombinations*2words*\frac{2Bytes}{Word}}{Update Rate}\]
+
+For this device, a 9-bit word is used to set the number of frequency points in the sweep. This would be \(2^9points=512\). Additionally, we have 4 channel muxes for both input and output, so the are \(4*4=16\) different combinations that we could sample for a given frequency. Both the the real and imaginary value are 16-bit words.
+
+\[BANDWIDTH_{Maximum}=\frac{512_{points}*16_{MuxCombinations}*2_{Words}*\frac{2Bytes}{Word}}{Update Rate}\]
+
+\[BANDWIDTH_{Maximum}=\frac{32768_{bytes}}{Update Rate}\]
+
+
+If we assume only one frequency point and 1 input 1 output mux combination:
+
+\[BANDWIDTH_{Maximum}=\frac{1_{points}*1_{MuxCombinations}*2_{Words}*\frac{2Bytes}{Word}}{Update Rate}\]
+
+\[BANDWIDTH_{Maximum}=\frac{4_{bytes}}{Update Rate}\]
+ 
+ 
+\[BANDWIDTH_{1In1Out}=\frac{512_{points}*1_{MuxCombinations}*2_{Words}*\frac{2Bytes}{Word}}{Update Rate}\]
+
+\[BANDWIDTH_{1In1Out}=\frac{2048_{bytes}}{Update Rate}\]
+
+There are no hard update requirements for this project, so I will leave the Update Rate undetermined. 
