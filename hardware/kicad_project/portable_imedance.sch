@@ -100,7 +100,7 @@ EELAYER 26 0
 EELAYER END
 $Descr USLetter 11000 8500
 encoding utf-8
-Sheet 1 8
+Sheet 1 9
 Title "Portable Impedance Tomography"
 Date "2017-09-10"
 Rev "NEW"
@@ -215,6 +215,7 @@ F3 "SCL" B R 2100 6650 50
 F4 "SEL0" O R 2100 6850 50 
 F5 "SEL1" O R 2100 6950 50 
 F6 "EN" O R 2100 7100 50 
+F7 "P2.1" I R 2100 7400 50 
 $EndSheet
 $Sheet
 S 1200 4600 900  1350
@@ -365,56 +366,13 @@ Wire Wire Line
 Wire Wire Line
 	4450 2550 5050 2550
 Connection ~ 4450 3350
-$Comp
-L Mounting_Hole MK1
-U 1 1 59E362AB
-P 4050 6850
-F 0 "MK1" H 4150 6900 50  0000 L CNN
-F 1 "Mounting_Hole" H 4150 6850 50  0000 L CNN
-F 2 "Mounting_Holes:MountingHole_4.5mm" H -900 800 50  0001 C CNN
-F 3 "" H -900 800 50  0001 C CNN
-F 4 "9029" H 4050 6850 50  0001 C CNN "mfg_pn"
-F 5 "keystone" H 4050 6850 50  0001 C CNN "mfg"
-	1    4050 6850
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mounting_Hole MK3
-U 1 1 59E367DB
-P 4850 6850
-F 0 "MK3" H 4950 6900 50  0000 L CNN
-F 1 "Mounting_Hole" H 4950 6850 50  0000 L CNN
-F 2 "Mounting_Holes:MountingHole_4.5mm" H -100 800 50  0001 C CNN
-F 3 "" H -100 800 50  0001 C CNN
-F 4 "9029" H 4850 6850 60  0001 C CNN "mfg_pn"
-F 5 "keystone" H 4850 6850 60  0001 C CNN "mfg"
-	1    4850 6850
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mounting_Hole MK2
-U 1 1 59E368E7
-P 4050 7050
-F 0 "MK2" H 4150 7100 50  0000 L CNN
-F 1 "Mounting_Hole" H 4150 7050 50  0000 L CNN
-F 2 "Mounting_Holes:MountingHole_4.5mm" H -900 1000 50  0001 C CNN
-F 3 "" H -900 1000 50  0001 C CNN
-F 4 "9029" H 4050 7050 60  0001 C CNN "mfg_pn"
-F 5 "kestone" H 4050 7050 60  0001 C CNN "mfg"
-	1    4050 7050
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mounting_Hole MK4
-U 1 1 59E369FD
-P 4850 7050
-F 0 "MK4" H 4950 7100 50  0000 L CNN
-F 1 "Mounting_Hole" H 4950 7050 50  0000 L CNN
-F 2 "Mounting_Holes:MountingHole_4.5mm" H -100 1000 50  0001 C CNN
-F 3 "" H -100 1000 50  0001 C CNN
-F 4 "9029" H 4850 7050 60  0001 C CNN "mfg_pn"
-F 5 "keystone" H 4850 7050 60  0001 C CNN "mfg"
-	1    4850 7050
-	1    0    0    -1  
-$EndComp
+$Sheet
+S 4100 7100 700  450 
+U 59E76106
+F0 "Auxiliary Analog Connector" 50
+F1 "auxconn.sch" 50
+F2 "AIN" O L 4100 7400 50 
+$EndSheet
+Wire Wire Line
+	4100 7400 2100 7400
 $EndSCHEMATC

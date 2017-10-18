@@ -1,4 +1,4 @@
-update=Sat 14 Oct 2017 02:10:54 PM CDT
+update=Sat 14 Oct 2017 04:07:03 PM CDT
 version=1
 last_client=kicad
 [pcbnew]
@@ -23,16 +23,6 @@ ModuleOutlineThickness=0.150000000000
 [cvpcb]
 version=1
 NetIExt=net
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=output/
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=
-SpiceAjustPassiveValues=0
-LabSize=50
-ERC_TestSimilarLabels=1
 [eeschema]
 version=1
 LibDir=/home/ashton/repo/kicad-library
@@ -133,5 +123,15 @@ LibName93=library/Xicor
 LibName94=library/xilinx
 LibName95=library/zetex
 LibName96=library/Zilog
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=../../documentation/schematic/
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceAjustPassiveValues=0
+LabSize=50
+ERC_TestSimilarLabels=1
 [general]
 version=1
