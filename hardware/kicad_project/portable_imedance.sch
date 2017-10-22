@@ -30,18 +30,13 @@ LIBS:elec-unifil
 LIBS:ESD_Protection
 LIBS:ftdi
 LIBS:gennum
-LIBS:graphic_symbols
 LIBS:hc11
-LIBS:infineon
 LIBS:intel
 LIBS:interface
-LIBS:intersil
 LIBS:ir
 LIBS:Lattice
 LIBS:leds
-LIBS:LEM
 LIBS:linear
-LIBS:logic_programmable
 LIBS:maxim
 LIBS:mechanical
 LIBS:memory
@@ -74,7 +69,6 @@ LIBS:references
 LIBS:regul
 LIBS:relays
 LIBS:rfcom
-LIBS:RFSolutions
 LIBS:sensors
 LIBS:silabs
 LIBS:siliconi
@@ -271,6 +265,7 @@ F 0 "J20" V 4250 1300 50  0000 R CNN
 F 1 "Conn_01x02" V 4150 1300 50  0000 R CNN
 F 2 "Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm" H -150 -200 50  0001 C CNN
 F 3 "" H -150 -200 50  0001 C CNN
+F 4 "68001-402HLF" H 4250 1500 60  0001 C CNN "manf#"
 	1    4250 1500
 	0    -1   -1   0   
 $EndComp
@@ -286,6 +281,7 @@ F 0 "J21" V 4250 1850 50  0000 R CNN
 F 1 "Conn_01x02" V 4150 1850 50  0000 R CNN
 F 2 "Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm" H -150 350 50  0001 C CNN
 F 3 "" H -150 350 50  0001 C CNN
+F 4 "68001-402HLF" H 4250 2050 60  0001 C CNN "manf#"
 	1    4250 2050
 	0    -1   -1   0   
 $EndComp
@@ -301,6 +297,7 @@ F 0 "J25" V 6950 3750 50  0000 R CNN
 F 1 "Conn_01x02" V 6850 3750 50  0000 R CNN
 F 2 "Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm" H 2550 2250 50  0001 C CNN
 F 3 "" H 2550 2250 50  0001 C CNN
+F 4 "68001-402HLF" H 6950 3950 60  0001 C CNN "manf#"
 	1    6950 3950
 	0    -1   1    0   
 $EndComp
@@ -316,6 +313,7 @@ F 0 "J24" V 6950 3250 50  0000 R CNN
 F 1 "Conn_01x02" V 6850 3250 50  0000 R CNN
 F 2 "Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm" H 2550 1750 50  0001 C CNN
 F 3 "" H 2550 1750 50  0001 C CNN
+F 4 "68001-402HLF" H 6950 3450 60  0001 C CNN "manf#"
 	1    6950 3450
 	0    -1   -1   0   
 $EndComp
@@ -331,6 +329,7 @@ F 0 "J23" V 6950 1800 50  0000 R CNN
 F 1 "Conn_01x02" V 6850 1800 50  0000 R CNN
 F 2 "Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm" H 2550 300 50  0001 C CNN
 F 3 "" H 2550 300 50  0001 C CNN
+F 4 "68001-402HLF" H 6950 2000 60  0001 C CNN "manf#"
 	1    6950 2000
 	0    -1   1    0   
 $EndComp
@@ -346,6 +345,7 @@ F 0 "J22" V 6950 1300 50  0000 R CNN
 F 1 "Conn_01x02" V 6850 1300 50  0000 R CNN
 F 2 "Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm" H 2550 -200 50  0001 C CNN
 F 3 "" H 2550 -200 50  0001 C CNN
+F 4 "68001-402HLF" H 6950 1500 60  0001 C CNN "manf#"
 	1    6950 1500
 	0    -1   -1   0   
 $EndComp

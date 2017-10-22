@@ -30,18 +30,13 @@ LIBS:elec-unifil
 LIBS:ESD_Protection
 LIBS:ftdi
 LIBS:gennum
-LIBS:graphic_symbols
 LIBS:hc11
-LIBS:infineon
 LIBS:intel
 LIBS:interface
-LIBS:intersil
 LIBS:ir
 LIBS:Lattice
 LIBS:leds
-LIBS:LEM
 LIBS:linear
-LIBS:logic_programmable
 LIBS:maxim
 LIBS:mechanical
 LIBS:memory
@@ -74,7 +69,6 @@ LIBS:references
 LIBS:regul
 LIBS:relays
 LIBS:rfcom
-LIBS:RFSolutions
 LIBS:sensors
 LIBS:silabs
 LIBS:siliconi
@@ -111,21 +105,22 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Conn_01x03 J?
+L Conn_01x03 J18
 U 1 1 59E762E9
 P 6800 3500
-F 0 "J?" H 6750 3150 50  0000 C CNN
+F 0 "J18" H 6750 3150 50  0000 C CNN
 F 1 "Conn_01x03" H 6750 3250 50  0000 C CNN
 F 2 "" H 1150 150 50  0001 C CNN
 F 3 "" H 1150 150 50  0001 C CNN
+F 4 "68001-403HLF" H 6800 3500 60  0001 C CNN "manf#"
 	1    6800 3500
 	1    0    0    1   
 $EndComp
 $Comp
-L GND #PWR?
+L GND #PWR046
 U 1 1 59E764D5
 P 6450 3750
-F 0 "#PWR?" H 6500 3800 50  0001 C CNN
+F 0 "#PWR046" H 6500 3800 50  0001 C CNN
 F 1 "GND" H 6500 3550 50  0000 C CNN
 F 2 "" H 0   0   50  0001 C CNN
 F 3 "" H 0   0   50  0001 C CNN
@@ -133,10 +128,10 @@ F 3 "" H 0   0   50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L VDD #PWR?
+L VDD #PWR047
 U 1 1 59E76527
 P 6450 3200
-F 0 "#PWR?" H 100 200 50  0001 C CNN
+F 0 "#PWR047" H 100 200 50  0001 C CNN
 F 1 "VDD" H 6500 3400 50  0000 C CNN
 F 2 "" H 100 350 50  0001 C CNN
 F 3 "" H 100 350 50  0001 C CNN

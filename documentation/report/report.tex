@@ -1,8 +1,8 @@
 
-%% cpe631.tex
-%% 2017/04/29
-%% by Ashton Johnson & Ian Swepston
-%% see http://github.com/ashtonchase/cpe631_report/
+%% cpe621.tex
+%% 2017/07/20
+%% by Ashton Johnson 
+%% see http://github.com/ashtonchase/portable_impedance_tomograhy
 %% for current contact information.
 %%
 %% This is a skeleton file demonstrating the use of IEEEtran.cls
@@ -43,7 +43,7 @@
 % *** Authors should verify (and, if needed, correct) their LaTeX system  ***
 % *** with the testflow diagnostic prior to trusting their LaTeX platform ***
 % *** with production work. The IEEE's font choices and paper sizes can   ***
-% *** trigger bugs that do not appear when using other class files.       ***                          ***
+% *** trigger bugs that do not appear when using other class files.       ***
 % The testflow support page is at:
 % http://www.michaelshell.org/tex/testflow/
 
@@ -55,10 +55,8 @@
 % manually specify the path to it like:
  \documentclass[journal]{IEEEtran}
 
-
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
-
 
 % *** MISC UTILITY PACKAGES ***
 %
@@ -78,11 +76,6 @@
 % When switching from latex to pdflatex and vice-versa, the compiler may
 % have to be run twice to clear warning/error messages.
 
-
-
-
-
-
 % *** CITATION PACKAGES ***
 %
 \usepackage{cite}
@@ -100,11 +93,6 @@
 % The latest version can be obtained at:
 % http://www.ctan.org/pkg/cite
 % The documentation is contained in the cite.sty file itself.
-
-
-
-
-
 
 % *** GRAPHICS RELATED PACKAGES ***
 %
@@ -325,7 +313,7 @@
 
 % *** PDF, URL AND HYPERLINK PACKAGES ***
 %
-%\usepackage{url}
+\usepackage{url}
 % url.sty was written by Donald Arseneau. It provides better support for
 % handling and breaking URLs. url.sty is already installed on most LaTeX
 % systems. The latest version and documentation can be obtained at:
@@ -354,7 +342,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Investigation of RISC-V ISA\\using Rocket-Chip}
+\title{A Portable Impedance\\Tomography Platform}
 
 %
 %
@@ -367,9 +355,8 @@
 % was not built to handle multiple paragraphs
 %
 
-\author{Ian Swepston, Ashton Johnson}% <-this % stops a space
-\thanks{Department of Electrical Engineering and Computer Sciences, University of California, Berkeley, California, 94720}% <-this % stops a space
-\thanks{Prof. Alexsander Milenkovic with the Department of Electrical and \\Computer Engineering, University of Alabama in Huntsville, Huntsville, AL 35899}% <-this % stops a space
+\author{Ashton Johnson}% <-this % stops a space
+\thanks{Prof. Emil Jovanov with the Department of Electrical and \\Computer Engineering, University of Alabama in Huntsville, Huntsville, AL 35899}% <-this % stops a space
 
 % note the % following the last \IEEEmembership and also \thanks - 
 % these prevent an unwanted space from occurring between the last author name
@@ -392,8 +379,8 @@
 
 
 % The paper headers
-\markboth{CPE 631, SPRING 2017}%
-{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for IEEE Journals}
+\markboth{CPE 621, FALL 2017}%
+{Shell \MakeLowercase{\textit{et al.}}: Portable Impedance Tomography Platform}
 % The only time the second header will appear is for the odd numbered pages
 % after the title page when using the twoside option.
 % 
@@ -417,12 +404,12 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-RISC-V is a new and open RISC instruction set architecture (ISA). There are a series of repositories provided by The University of California, Berkeley to support the ISA help to design hardware. In this paper we investigate these tools and use them to learn more about RISC-V and RISC-V processors. 
+Electrical impedance analysis is a non-invasive technique use for determining the density and composition of various materials. Regarding the human body, one dimensional analysis can determine water content, body fat, and blood glucose measurements. Using multiple electrode sets, we developed a solution to provide two dimensional (2D) tomography imaging. A portable bio-impedance tomography unit is realized using the Analog Devices AD5933 integrated circuit for measuring complex impedance, an analog front end for interfacing to the human body and analog multiplexers. We implement this as a portable device that can be accessed using Bluetooth Low Energy.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-RISC-V, ISA, Zedboard, Zynq, Rocket-Chip
+bioimpedance, AD5933, tomography, impedance, Bluetooth, BLE, smartphone, psoc, Cypress, pmod
 \end{IEEEkeywords}
 
 % For peer review papers, you can put extra information on the cover
@@ -453,64 +440,76 @@ RISC-V, ISA, Zedboard, Zynq, Rocket-Chip
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{T}{he} RISC-V open instruction set architecture commissioned in 2010 has been making waves in the in world of open hardware within both the academic community and industry. As students pursuant of masters degrees in computer engineering, we investigate the RISC-V processor through venues that we are already familiar with: Field Programmable Gate Arrays (FGPAs).
-\newline The Rocket-Chip generator allows for developing a system-on-chip (SOC) design rapidly.\cite{Asanović:EECS-2016-17}. We utilize the fpga-zynq \cite{fpga-zynq} repository to target a Zynq-based Zedboard FPGA development platform to instantiate and test out a RISC-V implementation.
+\IEEEPARstart{T}{he} impedance of an object can provide meaningful insight into the composition of that particular object. 
+\newline 
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
 
-%\hfill iXs & acj
-%\hfill August 26, 2015
+%\hfill acj
+%\hfill October 22, 2017
 
 \section{Project Goals}
-The goals of our project are to investigate the source material provided by UC Berkeley's Rocket Chip Generator. Specifically, we will attempt to replicate the successes of those listed in the fpga-zynq \cite{fpga-zynq} repository. Goals are listed in order or complexity, but also different layers of the supplied design. 
+The goals of this project to develop a portable solution for impedance measurements. It shall have the following features:
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
 \begin{itemize}
-\item{Load Prebuilt Image}%TODO determine to to remove colons generated
-\item{Modify FPGA Project}
-\item{Modify RISC-V ISA}
-\item{Document Results}
+\item{Single Frequency Impedance Measurement}%TODO determine to to remove colons generated
+\item{Frequency Swept Impedance Mesaurement}
+\item{Two-dimensional Impedance Measurements}
+\item{Portability}
+\itme{Bluetooth Connectivity}
 \end{itemize}
 
-\section{RISC-V Overview}
-RISC-V is an open risc instruction set architecture (ISA) commissioned in 2010 by a research team at UC Berkeley \cite{Waterman:EECS-2016-118}. The stated goal of the team was to create a free and open ISA for commercial, educational, and open source settings. RISC-V is governed by the RISC-V foundation and is under the BSD (Berkeley Software Distribution) Licence, which is similar to the LGPL. The foundation is intended to maintain the ISA in the long term and guide it toward being an industry standard.\newline
-RISC-V is not the first attempt at an open ISA, but RISC-V appears to be positioned to succeed where others failed. The RISC-V foundation is important. They can act in the same way a company, like ARM Holdings, and will continue to improve the ISA, but will not monetizing it. Free hardware designs are also helpful. Other open ISAs have failed because they were impractical to implement. Potential adopters needed to either design their own cores or try to implement untested designs. Finally, educators are eager to adopt this ISA. The possibility of free-to-use ISA and hardware designs would allow us to use real assembly and real hardware to teach architecture. This would create demand and would flood the design world with scientists and engineers that know the ISA and will choose to use it due to familiarity.
 
-% Generates some bullet points
-\subsection{Design Benefits}
-\begin{itemize}
-\item BSD License:\newline
-  Allows proprietary derivative work
-\item Scaleability:\newline
-  The ISA is largely microarchitecture-agnostic and flexible enough for most application workloads. It can be scaled to cover everything from microcontrollers to warehouse-scale servers.
-\item Code Compression:\newline
-  The ISA supports compression of its binary programs down to 16 bits per command without losing core functionality. This allows for significant reductions in code size for small scale embedded devices.
-\item 128 Bit:\newline
-  Comes with fully-functional 128-bit design. This does not appear to be commercially supported and may be of use soon in large-scale cloud computing applications.
-\item Software Support:\newline
-  There is a free software suite for application development. This will be discussed later.
-\end{itemize}
+\section{Impedance Overview}
+Impedance can be defines as the effective resistance of an electric circuit or component to alternating current, arising from the combined effects of ohmic resistance and reactance. At a frequency of zero Hertz, the impedance is simply the ohmic resistance. The impedance of a circuit can be though of as complex number, where the real part is the ohmic resistance and the imaginary part is the reactance. Therefore the impedance can be expresses as \[Z=R+jX\]. In application, there are two ideal components that that have purely reactive impedance. That is, the \(R\) is zero; thefore \(Z=jX\). One component is an inductor, whose impedance is expressed as \[Z_L=j\omegaL\] where \(\omega=2*\pi*freq(Hz)\) and L is the inductance in Henries. The other component is a capacitor, whose impedance is expressed as \[Z_C=\frac{1}{j\omegaC}\] where \(\omega=2*\pi*freq(Hz)\) and C is the capacitance in Farads.\newline
+The human body can be generalized in a circuit that has a complex impedance. It is a combination of purely resistance elements, as well as capactive elements. The exact values of these components are dependent on many factors including electrode placement, water content, salt content, and other factors. Lukanski performs a thorough characterization of the human body\cite{lukaski_assessment_1985}. 
 
-\section{Pre-Built Image}
-It is possible to load a pre-built RISC-V core design onto a Xilinx Zedboard. The image is provided in the fpga-zynq repository. This image contains a basic implementation that allows the toolchain to be tested and for the execution of user programs, such as benchmarks. This configuration was investigated and a simple program was compiled using the toolchain and was executed on the core. We were able to compile and run the basic matrix multiplication program we developed in the early part of the CPE 631 class. It should be noted that this program utilized double precision floating points numbers.
+\section{Hardware Implementation}
+\subsection{AD5933}
+The design is centered around the Analog Devices AD5933 1 Megasample per second, 12-Bit Impedance Converter\cite{ad5933}. The response signal from the impedance is sampled by the on-board ADC and a discrete Fourier transform (DFT) is processed by an on-board DSP engine. The DFT algorithm returns a real (R) and imaginary (I) data-word at each output frequency.\newline
+Once calibrated, the magnitude of the impedance and relative phase of the impedance at each frequency point along the sweep is easily calculated. This is done off chip using the real and imaginary register contents, which can be read from the serial I2C interface.\newline
+While the AD5933 is an excellent device. The analog interface to the unit-under-test (UUT) is not design specific; it is a simple voltage digital-to-analog converter (DAC) that drives a voltage mode analog-to-digital converter (ADC). For bio-impedance applications, it is important to have a constant current amplitude over the frequency range of interest to ensure accurate measurements \cite{bertemes2002tissue}. Additionally, it is also important to not exceed safe current levels passing though the human body as defined in IEC60601-1. This limit is defined as the Patient Auxiliary Current. For DC current, this is limited to 0.05 miliAmperes. For AC current, this is limited to 0.5 miliAmperes. Using a voltage controlled current source, we can precisely control the current flowing through the test subject. 
 
-\subsection{Image Makeup}
-The pre-built configuration is a simple design that can be instantiated on the Zedboard. It is a single core design for the purpose of rapidly testing and running RISC-V in hardware. The basic design is an RV64G core. This means that it is a RISC-V (RV) 64 bit core servicing the General Purpose (G) extension set. The general purpose set can be thought of as a ``normal'' processor. We will cover the details in the Rocket Chip Generator section later. \newline
-Surrounding the core in this design is a split L1 cache for instructions and data. These caches are designed to be simple and save FPGA space. Both are 4-way set associative with 64 sets per cache and 8 TLB entries. They are non-error correcting, use the random policy for replacement, and do not use scratchpad memory to store calculations. \newline
-This design does not contain an L2 cache due to size and complexity, so after L1, the processor must go directly to main memory. For main memory, the design splits the 512MB of on-board Zedboard DDR memory in half, utilizing 256MB for its needs and the other half allocated to the ARM cores in the Zynq.
+\subsection{Analog Front End}
 
-\subsection{Toolchain}
-To complete this goal, cross-compilation was necessary. For this, Berkeley has developed and released the sources for RISC-V variants of the LLVM and GNU toolchains. These are included in the RISC-V repository under fpga-zynq/rocket-chip/riscv-tools. They are available as a standalone or as a link within the fpga-zynq project for Zynq boards. The toolchains can be installed several ways, but for performance and simple installation, we recommend using the provided build scripts in the riscv-tools directory. Instructions for installing the toolchain can be found in risc-gnu-toolchain repository \cite{toolchain}. Once built on the native system, the tools are named like: riscv64-unknown-elf-g++ and can be installed anywhere on that system. These toolchains appear to be complete and operate identically to their mainstream versions. As an example, compilation can be completed using the normal formats: [path to tools]/riscv64-unknown-elf-g++ main.cpp -o executable. \newline \newline While the toolchains are being built, some additional useful tools are constructed:\newline
 
-\subsubsection{Spike and pk}
-The executable for spike is built here. Spike is the RISC-V open source cross-platform simulator designed by Berkeley. It allows for execution of RISC-V binaries on an arbitrary platform through emulation. This is paired with a program called pk (proxy kernel). pk is designed to format and provide RISC-V instructions to either a kernel-less core or the spike program for execution and to receive and handle output from the core. \newline
+\begin{figure} %reference https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions for [!h] options on placing the figures
+\centering
+\includegraphics[width=9cm ]{./graphics/front_end.png}
+\centering
+\caption{Analog Front End}
+\label{fig:front_end}
+\end{figure}
 
-\subsubsection{Benchmarks}
-Embedded in this repository are a series of RISC-V benchmarks compiled and ready to be executed on a system with a RISC-V core. 
 
-\section{FPGA Project}
-Using the supplied makefiles, a Xilinx Vivado project was generated according to the the default Rocket Chip configuration. From this,  we investigated the design that was targeting the Zedboard.
-On the Zedboard, the Rocket core interfaces with the ARM processing system via two AXI interfaces. One AXI interace is provides the ARM the ability to load user executibles into the rocket core. The other AXI interface provides the rocket core access to the DRAM that is on the zedboard. The memory side interface utilizes one of th AXI-HP ports on the Zynq Processing Module that is instantiated in a Block Diagram.
+To accommodate the aforementioned limitations of the AD5933, we will implement a voltage controlled current source for providing the stimulus the UUT. In addition to this we will provide a differential input such that the result voltage can be measured between two electrodes. Differential measurements should eliminate any common mode interference present on the electrodes.
+The analog front end follows closely what Harder described\cite{harder_smart_2016}. The design shown in In Fig~\ref{fig:front_end} uses a Analog Devices AD8130 differential receiver amplifier as a wide-band voltage controlled current source.
+
+\subsubsection{Electrode Multiplexing}
+The AD5933 Impedance analyzer using the analog front end allows for taking measurements across 4 electrodes; two for the excitation and two for the sensing. Spatially, this allow only for a one-dimensional (1D) measurement. For tomography applications, we need to be able to drive one pair of electrodes and sense on different electrodes. This allows for a two-dimensional (2D) dataset. For a set of N electrodes, in our case 4 sets, the number of measurements we can have is defined as \[Measurement_{Combinations}=\sum_{i=1}^{i=N-1}i\]. Therefore for 4 sets of sense electrodes, we will have 6 different measurements. These can be shown in the Fig~\ref{fig:combo4}
+
+\begin{figure} %reference https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions for [!h] options on placing the figures
+\centering
+\includegraphics[width=5cm ]{./graphics/combo4.png}
+\centering
+\caption{Electrode Combinations}
+\label{fig:combo4}
+\end{figure}
+
+For this design, we not only multiplexed the voltage sense electrodes, but also the current drive electrodes. This means we have \[\sum_{i=1}^{i=N-1}i\times\sum_{i=1}^{i=N-1}i=6\times6=36\]
+different combinations of measurements we can collect.
+
+The multiplexing is realized using two Analog Devices AD1209 analog multiplexers. This devices is a differential 4-to-1 multiplexer. This allows us to switch both the drive and the sense simultaneously. In hindsight, this is a design limitation. This actually brings the number of combinations back down to 6, as the voltage can only be sensed on the same channels as the drive. 
+\subsubsection{Device Controller}
+
+
+\section{Software Implementation}
+\subsection {Device States}
+
+
+\subsection{Communication}
+
 
 \begin{figure} %reference https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions for [!h] options on placing the figures
 \centering
@@ -519,75 +518,15 @@ On the Zedboard, the Rocket core interfaces with the ARM processing system via t
 \caption{Design with GPIO peripheral.}
 \label{fig:gpio}
 \end{figure}
-In Fig~\ref{fig:gpio}, we attached a Xilinx supplied AXI GPIO IP core. At the time, this method seemed to be the easiest for making a peripheral available to the RISC-V processor. The GPIO could then be accessed as a memory-mapped IO device using an address generated by the Xilinx block diagram. While we were successful in generating a new bitstream for the zedboard, and loading the design onto the board, we were not successful in actually manipulating the GPIO device. When running an executable using the Proxy Kernel\cite{pk}, an error is reported of a 'user store segfault' at the address of the GPIO. This result was also confirmed using the Spike simulator. Upon researching further, there are similar efforts to attach peripherals to the processor as you might expect. We discovered that the lowRISC project provides an exampled on how peripherals should be added\cite{lowrisc}. Using the diagrams they provided, we now understand that peripherals should be connected via non-cachable channels. This would require a unique AXI based bus from the processor that doesn't route through the memory interconnects from the L1 cache to the main memory. We were not able to pursue this further given the time 
 
-\section{Rocket Chip Generator}
-In order to rapidly produce prototypes of a design and to make RISC-V more accessible, the Berkeley team has created a system called the Rocket Chip generator. By using this tool, a hardware architect can have a RISC-V core up and running within minutes of downloading the appropriate repository and can begin to make changes as they are needed.
+In Fig~\ref{fig:gpio}, 
 
-\subsection{Chisel}
-The Rocket Chip generator relies on a Berkeley developed language extension of the Scala programming language, called Chisel\cite{bachrach2012chisel}. Using Chisel, functional blocks of hardware are described for all the components required in the rocket core. Chisel is a new breed of hardware description language. Compared to traditional HDLs, such as Verilog or VDHL, Chisel can be considered a higher level language. It is syntactically similar to Java and employs many Object Oriented principles such as classes, inheritance and polymorphism. Within Chisel, hardware configurations are developed by instantiating base modules, which are treated like objects, and then including options by overriding the default parameters of each module. The hardware is described and connected hierarchically and upon evaluation the Chisel code generates Verilog which may be used in synthesis.
-
-\begin{figure} %reference https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions for [!h] options on placing the figures
-\centering
-\includegraphics[width=9cm ]{./graphics/ExampleRocketChip.png}
-\centering
-\caption{Architecture that may be generated by the Rocket Chip Generator\cite{Asanović:EECS-2016-17}}
-\label{fig:rocketchip}
-\end{figure}
-
-\subsection{Generation Options}
-The Rocket Chip Generator is intended to be a do-it-all hardware design tool for hardware architects. As such, it is very flexible. Fig~\ref{fig:rocketchip} is an example of an SoC created by the Rocket Chip generator and it demonstrates the power of the tool's sub-generators working together. For example, this instance could be generated and contains two separate, self-contained procesors connected by an interconnection network and L2 cache plus an AXI4 Crossbar with peripherals like a memory controller attached. The processor in Tile1 contains a small coprocessor and Berkeleys custom-made out of order RISC-V core (BOOM) and Tile2 has a general Rocket core for basic operations and a larger coprocessor.
-
-\subsection{Extensions}
-Extensions are a mechanism used by the chip generator to allow easy manipulation of the core and control the supported section of the instruction set. Rocket cores can be as simple or as complex as needed to complete tasks. Much of this complexity is due to the inclusion and exclusion of extensions. For convenience, many commonly used extensions are available to designers pre-written within the generator. The ``G'' extension is a combination of the extension for Integer (I), Multiply/Divide (M), Atomic (A), Floating Point (F), and Double Precision (D). This could be known as RV64IMAFD, but because these are so common, they are combined as G and referenced as RV64G \cite{Waterman:EECS-2016-118}. 
-
-\section{Rocket Chip Modification}
-The first step in understanding the generator is attempting to modify the design. This was our goal. Using chisel we successfully modified the number of cores instantiated in the design. This can easily be performed by modifying the following text in the file [path-to-repo]/rocket-chip/src/main/scala/rocketchip/Configs.scala to include the bolded text:
-\newline
-\newline
-\tt{class DefaultFPGAConfig extends \textbf{++ new WithNCores(2)} Config(new FPGAConfig ++ new BaseConfig)}\rm{}
-\newline
-\newline
-While generating a dual core configuration was simple, it was not we could not implement this on the Zedboard because the resource utilization was too great. This was due to two reasons:
-\subsection{LUT Utilization}
-The processing coreplexes take up around 60 percent of the device LUT utilization. Therefore two core utilize 120 percent. Using a larger device could mitigate this problem.
-\subsection{Block RAM Utilization}
-When instantiating two or more cores, an L2 cache is automatically inferred. This is quite convenient; however, the default L2 instantiation allocates 2048KB of memory. This required around 1,200 percent of Block RAM utilization! To resolve this, we modified the previous snippet by adding the follow bold text:
-\newline
-\newline
-\tt{class DefaultFPGAConfig extends ++ new WithNCores(2) \textbf{+ new WithL2Capacity(256)} Config(new FPGAConfig ++ new BaseConfig)}\rm{}
-\newline
-\newline
-To faciliate testing out the different configurations, we defined several classes beyond the \tt{DefaultFPGAConfig}\rm{} that can be instantiated. Their names are self-explanatory:
-\newline
-\newline
 \tt{
 class DefaultFPGARoccConfig \newline
 class DefaultFPGA32KBL2Config \newline
 class DefaultFPGA256KBL2Config \newline
 class DefaultFPGADualCoreConfig}\rm{}
 
-\section{RoCC Accelerator}
-The Rocket-Chip generator provides a framework for developeing custom co-processors that are housed in the processing coreplex, allowing for low latency access to the co-processor. These are the Rocket Custom Coprocessor (RoCC). These coprocessors utilize reserved opcodes in the instruction set. To get started with the accelerators, three example coprocessors are already defined in the repository. These are defined down in .../rocket/rocc.Scala. We were sucessful in instantiating these cores, and provided \tt{class DefaultFPGARoccConfig}\rm{} to make these easier to implmement. Resource utilization of the custom coprocessors is negligible.
-
-We ran into difficulties when developing software for targeting the custom coprocessors. Documentation for how to target these is absent, so we were left to seaching user forums on the internet to see guidance. After much research, we were still not sucessful in using the custom opcodes. We discovered in previous iterations of the gnu-toolchain, the custome(0/1/2/3) opcodes were supported. Since then, the team has removed default support for the opcodes, and now require the use of pseudo opcodes\cite{psuedocode}. 
-
-\section{Notable Failures}
-Throughout this process, we experienced success; however, we experienced even more failures. We note these so as not to disguise, but to bring forward issues with the system, so that follow-on efforts might not be able to resolve them, or at least be aware of them.
-
-\subsubsection{Custom Opcodes}
-As mentioned previously, we were unsuccessful in utilizing custom opcodes, even those designed as pre-planned custom opcodes. While we were finally able to compile programs using the pseudo opcodes technique, the proxy kernel would not allow the execution of those instructions. They were designated as illegal opcodes. We suspect the proxy kernel would need to be recompiled to allow these instructions. 
-
-\subsubsection{Deploying Linux}
-Through multiple paths we were not able to rebuild GNU/Linux and execute it on the processor. This included both on the development board and the Spike simulator. To give background to this, The Berkeley Bootloader (BBL), which is found in the riscv-pk repository\cite{pk}, is an executable that is used to load in an ELF file into the processor. Most notably, this is used to boot GNU/Linux. When compiling the BBL, the Linux ELF file must be specified, otherwise and dummy ELF file is included. The output of the BBL build process is a single executable that contains the kernel.
-
-We were successful in building the Linux kernel using the riscv-linux repository\cite{linux}. Additionally, we were successful in building a GNU/Linux distribution using the Yocto Pocky and the recipes provided in riscv-poky\cite{poky}. For Poky, we validated the build using the Spike simulator and BBL that is compiled at alongside the kernel. Unfortunately, moving that working configuration of the BLL and the kernel image and rootfs to the SD card did not yield success. Reflecting more on this configuration, it appears that version of the BBL does not require the kernel to be compiled into it. It seems to be an argument to it.
-
-\subsubsection{AXI Peripherals}
-We were not able to access a memory mapped I/O device. In this case a GPIO peripheral. Our test code was written to directly read and write to a pointer-address location (0x4000 0000). Yet again, the proxy kernel reported a segfault when reaching this step of the program. This restriction could be removed with recompilation of the proxy kernel, but this is only speculation.
-
-\section{Document Results}
-For documentation we are providing an Oracle VMWare disk image to reach each of the three goals listed above using the virtual machine provided. The disk image is an Ubuntu 16.04 distribution with all the required repositories and examples necessary to replicate our goals. We felt this was the best approach for allowing others to verify and replicate our results. Additionally, instructions for the virtual machine getting a new virtual machine up and running using the virtual disk provided. While this will not provided the fastest avenue for building the different items required, it provided a path with all dependencies removed. 
 
 
 % An example of a floating figure using the graphicx package.
@@ -706,12 +645,12 @@ It is these authors opinion that RISC-V is poised for success. It is at a critic
 % \subsection or using \label (\appendices by itself
 % starts a section numbered zero.)
 %
-
+\appendix{Source Material}
+All source material for this project is provided under the MIT license and is available at \url{https://github.com/ashtonchase/portable_impedance_tomography} . 
 
 % use section* for acknowledgment
 \section*{Acknowledgment}
-
-The authors would like to thank the UC Berkeley Architecture Research team for the use of their materials and research. Thanks are also due to the RISC-V foundation and the open source community for their documentation of the RISC-V ISA.
+TBD
 
 
 % Can use something like this to put references on a page
@@ -739,7 +678,7 @@ The authors would like to thank the UC Berkeley Architecture Research team for t
 % http://www.michaelshell.org/tex/ieeetran/bibtex/
 \bibliographystyle{IEEEtran}
 % argument is your BibTeX string definitions and bibliography database(s)
-\bibliography{cpe631}
+\bibliography{report}
 %
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
@@ -760,10 +699,6 @@ The authors would like to thank the UC Berkeley Architecture Research team for t
 % simpler here.)
 %\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
 % or if you just want to reserve a space for a photo:
-
-\begin{IEEEbiographynophoto}{Ian Swepston}
- Received his B.S. in Computer Engineering from Clemson University in 2015. He is currently pursuing a Master's Degree in Computer Engineering at the University of Alabama in Huntsville. He currently works as a Computer Engineer at Dynetics, Inc. in Huntsville.
-\end{IEEEbiographynophoto}
 
 % if you will not have a photo at all:
 \begin{IEEEbiographynophoto}{Ashton Johnson}
@@ -793,5 +728,3 @@ The authors would like to thank the UC Berkeley Architecture Research team for t
 
 
 
-%%  LocalWords:  DefaultFPGAConfig WithNCores Config FPGAConfig
-%%  LocalWords:  BaseConfig

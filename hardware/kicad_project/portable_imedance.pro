@@ -25,7 +25,7 @@ version=1
 NetIExt=net
 [eeschema]
 version=1
-LibDir=/home/ashton/repo/kicad-library
+LibDir=./kicad-library
 [eeschema/libraries]
 LibName1=portable_imedance-rescue
 LibName2=library/74xgxx

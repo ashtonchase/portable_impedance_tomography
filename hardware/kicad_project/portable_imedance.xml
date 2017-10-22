@@ -2,7 +2,7 @@
 <export version="D">
   <design>
     <source>/home/ashton/repo/portable_impedance_tomography/hardware/kicad_project/portable_imedance.sch</source>
-    <date>Thu 19 Oct 2017 05:52:05 PM CDT</date>
+    <date>Sat 21 Oct 2017 03:28:57 PM CDT</date>
     <tool>Eeschema (2017-02-21 revision 35a8d78)-master</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -126,6 +126,9 @@
     <comp ref="J20">
       <value>Conn_01x02</value>
       <footprint>Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm</footprint>
+      <fields>
+        <field name="manf#">68001-402HLF</field>
+      </fields>
       <libsource lib="portable_imedance-cache" part="Conn_01x02"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>59C70A2D</tstamp>
@@ -133,6 +136,9 @@
     <comp ref="J21">
       <value>Conn_01x02</value>
       <footprint>Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm</footprint>
+      <fields>
+        <field name="manf#">68001-402HLF</field>
+      </fields>
       <libsource lib="portable_imedance-cache" part="Conn_01x02"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>59C7114D</tstamp>
@@ -140,6 +146,9 @@
     <comp ref="J25">
       <value>Conn_01x02</value>
       <footprint>Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm</footprint>
+      <fields>
+        <field name="manf#">68001-402HLF</field>
+      </fields>
       <libsource lib="portable_imedance-cache" part="Conn_01x02"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>59C717B8</tstamp>
@@ -147,6 +156,9 @@
     <comp ref="J24">
       <value>Conn_01x02</value>
       <footprint>Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm</footprint>
+      <fields>
+        <field name="manf#">68001-402HLF</field>
+      </fields>
       <libsource lib="portable_imedance-cache" part="Conn_01x02"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>59C72087</tstamp>
@@ -154,6 +166,9 @@
     <comp ref="J23">
       <value>Conn_01x02</value>
       <footprint>Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm</footprint>
+      <fields>
+        <field name="manf#">68001-402HLF</field>
+      </fields>
       <libsource lib="portable_imedance-cache" part="Conn_01x02"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>59C73098</tstamp>
@@ -161,6 +176,9 @@
     <comp ref="J22">
       <value>Conn_01x02</value>
       <footprint>Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm</footprint>
+      <fields>
+        <field name="manf#">68001-402HLF</field>
+      </fields>
       <libsource lib="portable_imedance-cache" part="Conn_01x02"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>59C730A0</tstamp>
@@ -202,8 +220,8 @@
       <value>0.1uF</value>
       <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <fields>
-        <field name="manf#">C0603C108M9PAC</field>
-        <field name="mfg">KEMET</field>
+        <field name="manf#">VJ0603V104ZXQPW1BC</field>
+        <field name="mfg">VISHAY</field>
       </fields>
       <libsource lib="device" part="C"/>
       <sheetpath names="/AD5933/" tstamps="/59B584EA/"/>
@@ -213,8 +231,8 @@
       <value>0.1uF</value>
       <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <fields>
-        <field name="manf#">C0603C108M9PAC</field>
-        <field name="mfg">KEMET</field>
+        <field name="manf#">VJ0603V104ZXQPW1BC</field>
+        <field name="mfg">VISHAY</field>
       </fields>
       <libsource lib="device" part="C"/>
       <sheetpath names="/AD5933/" tstamps="/59B584EA/"/>
@@ -224,8 +242,8 @@
       <value>10uF</value>
       <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <fields>
-        <field name="manf#">C0603C106M9PAC</field>
-        <field name="mfg">KEMET</field>
+        <field name="manf#">VJ0603V105ZXQPW1BC</field>
+        <field name="mfg">VISHAY</field>
       </fields>
       <libsource lib="device" part="C"/>
       <sheetpath names="/AD5933/" tstamps="/59B584EA/"/>
@@ -268,8 +286,8 @@
       <value>0.1u</value>
       <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <fields>
-        <field name="manf#">C0603C107PAC</field>
-        <field name="mfg">KEMET</field>
+        <field name="manf#">VJ0603V104ZXQPW1BC</field>
+        <field name="mfg">VISHAY</field>
       </fields>
       <libsource lib="device" part="C"/>
       <sheetpath names="/Receive Mux/" tstamps="/59B584EE/"/>
@@ -364,10 +382,10 @@
       <tstamp>59C8353B</tstamp>
     </comp>
     <comp ref="U5">
-      <value>LD3985G25R_TSOT23</value>
+      <value>LDS3985M25R</value>
       <footprint>TO_SOT_Packages_SMD:TSOT-23-5</footprint>
       <fields>
-        <field name="manf#">LD3985G25R</field>
+        <field name="manf#">LDS3985M25R</field>
         <field name="mfg">ST Microelectronics</field>
       </fields>
       <libsource lib="portable_imedance-cache" part="LD3985G25R_TSOT23"/>
@@ -375,11 +393,11 @@
       <tstamp>59B7C03C</tstamp>
     </comp>
     <comp ref="C8">
-      <value>10n</value>
+      <value>33n</value>
       <footprint>Capacitors_SMD:C_0402</footprint>
       <fields>
-        <field name="manf#">C0402C104M9PAC</field>
-        <field name="mfg">KEMET</field>
+        <field name="manf#">VJ0402V333ZXJCW1BC</field>
+        <field name="mfg">VISHAY</field>
       </fields>
       <libsource lib="device" part="C"/>
       <sheetpath names="/Power/" tstamps="/59B5850F/"/>
@@ -400,8 +418,8 @@
       <value>1u</value>
       <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <fields>
-        <field name="manf#">C0603C107M9PAC</field>
-        <field name="mfg">KEMET</field>
+        <field name="manf#">VJ0603V105ZXQPW1BC</field>
+        <field name="mfg">VISHAY</field>
       </fields>
       <libsource lib="device" part="C"/>
       <sheetpath names="/Power/" tstamps="/59B5850F/"/>
@@ -411,8 +429,8 @@
       <value>1u</value>
       <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <fields>
-        <field name="manf#">C0603C107M9PAC</field>
-        <field name="mfg">KEMET</field>
+        <field name="manf#">VJ0603V105ZXQPW1BC</field>
+        <field name="mfg">VISHAY</field>
       </fields>
       <libsource lib="device" part="C"/>
       <sheetpath names="/Power/" tstamps="/59B5850F/"/>
@@ -422,8 +440,8 @@
       <value>33n</value>
       <footprint>Capacitors_SMD:C_0402</footprint>
       <fields>
-        <field name="manf#">C0402C333M9PAC</field>
-        <field name="mfg">KEMET</field>
+        <field name="manf#">VJ0402V333ZXJCW1BC</field>
+        <field name="mfg">VISHAY</field>
       </fields>
       <libsource lib="device" part="C"/>
       <sheetpath names="/AD5933 Front End/" tstamps="/59B59BDF/"/>
@@ -463,11 +481,11 @@
       <tstamp>59B5A890</tstamp>
     </comp>
     <comp ref="C18">
-      <value>100n</value>
+      <value>0.1u</value>
       <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <fields>
-        <field name="manf#">C0603C108M9PAC</field>
-        <field name="mfg">KEMET</field>
+        <field name="manf#">VJ0603V104ZXQPW1BC</field>
+        <field name="mfg">VISHAY</field>
       </fields>
       <libsource lib="device" part="C"/>
       <sheetpath names="/AD5933 Front End/" tstamps="/59B59BDF/"/>
@@ -542,8 +560,8 @@
       <value>1u</value>
       <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <fields>
-        <field name="manf#">C0603C109M9PAC</field>
-        <field name="mfg">KEMET</field>
+        <field name="manf#">VJ0603V105ZXQPW1BC</field>
+        <field name="mfg">VISHAY</field>
       </fields>
       <libsource lib="device" part="C"/>
       <sheetpath names="/AD5933 Front End/" tstamps="/59B59BDF/"/>
@@ -563,8 +581,8 @@
       <value>1u</value>
       <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <fields>
-        <field name="manf#">C0603C109M9PAC</field>
-        <field name="mfg">KEMET</field>
+        <field name="manf#">VJ0603V105ZXQPW1BC</field>
+        <field name="mfg">VISHAY</field>
       </fields>
       <libsource lib="device" part="C"/>
       <sheetpath names="/AD5933 Front End/" tstamps="/59B59BDF/"/>
@@ -582,11 +600,11 @@
       <tstamp>59B5E445</tstamp>
     </comp>
     <comp ref="C14">
-      <value>100n</value>
+      <value>0.1u</value>
       <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <fields>
-        <field name="manf#">C0603C108M9PAC</field>
-        <field name="mfg">KEMET</field>
+        <field name="manf#">VJ0603V104ZXQPW1BC</field>
+        <field name="mfg">VISHAY</field>
       </fields>
       <libsource lib="device" part="C"/>
       <sheetpath names="/AD5933 Front End/" tstamps="/59B59BDF/"/>
@@ -662,8 +680,8 @@
       <value>0.1u</value>
       <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <fields>
-        <field name="manf#">C0603C107PAC</field>
-        <field name="mfg">KEMET</field>
+        <field name="manf#">VJ0603V104ZXQPW1BC</field>
+        <field name="mfg">VISHAY</field>
       </fields>
       <libsource lib="device" part="C"/>
       <sheetpath names="/Transmit Mux/" tstamps="/59B6F87D/"/>
@@ -781,6 +799,9 @@
     </comp>
     <comp ref="J18">
       <value>Conn_01x03</value>
+      <fields>
+        <field name="manf#">68001-403HLF</field>
+      </fields>
       <libsource lib="portable_imedance-cache" part="Conn_01x03"/>
       <sheetpath names="/Auxiliary Analog Connector/" tstamps="/59E76106/"/>
       <tstamp>59E762E9</tstamp>

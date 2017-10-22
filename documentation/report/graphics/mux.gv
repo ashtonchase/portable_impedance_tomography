@@ -1,0 +1,91 @@
+digraph mux{
+	
+rankdir=LR;
+splines=false;
+ratio=0.75
+
+subgraph cluster_dut{
+
+	"1"
+	"2"
+	"3"
+	"4"
+	
+}
+
+"sense+"
+"sense-"
+"drive+"
+"drive-"
+
+subgraph cluster_outux{
+		
+"inA1" [label="A"]
+"inB1" [label="B"]
+subgraph cluster11{
+	"outA11" [label="1A"]
+	"outB11" [label="1B"]
+}
+subgraph cluster21{
+	"outA21" [label="2A"]
+	"outB21" [label="2B"]
+}
+subgraph cluster31{
+	"outA31" [label="3A"]
+	"outB31" [label="3B"]
+}
+
+subgraph cluster41{
+	"outA41" [label="4A"]
+	"outB41" [label="4B"]
+}
+"inA1"->{"outA11","outA21","outA31","outA41"}
+"inB1"->{"outB11","outB21","outB31","outB41"}
+}
+
+"sense+"->"inA1"
+"sense-" -> "inA2" [dir=back]
+
+"drive+"->"inB1"
+"drive-"->"inB2" [dir=back]
+
+subgraph cluster_inmux{
+	
+"inA2" [label="A"]
+"inB2" [label="B"]
+
+subgraph cluster12{
+	"outA12" [label="1A"]
+	"outB12" [label="1B"]
+}
+subgraph cluster22{
+	"outA22" [label="2A"]
+	"outB22" [label="2B"]
+}
+subgraph cluster32{
+	"outA32" [label="3A"]
+	"outB32" [label="3B"]
+}
+
+subgraph cluster42{
+	"outA42" [label="4A"]
+	"outB42" [label="4B"]
+}
+
+
+"inA2"->{"outA12","outA22","outA32","outA42"}
+"inB2"->{"outB12","outB22","outB32","outB42"}
+
+}
+
+
+
+{"outA11":e, "outB11":e}->"1":w
+{"outA21":e, "outB21":e}->"2":w
+{"outA31":e, "outB31":e}->"3":w
+{"outA41":e, "outB41":e}->"4":w
+{"outA12":e, "outB12":e}->"1":w[dir=back]
+{"outA22":e, "outB22":e}->"2":w[dir=back]
+{"outA32":e, "outB32":e}->"3":w[dir=back]
+{"outA42":e, "outB42":e}->"4":w[dir=back]
+}
