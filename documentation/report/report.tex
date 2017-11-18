@@ -404,7 +404,7 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-Electrical impedance analysis is a non-invasive technique use for determining the density and composition of various materials. Regarding the human body, one dimensional analysis can determine water content, body fat, and blood glucose measurements. Using multiple electrode sets, we developed a solution to provide two dimensional (2D) tomography imaging. A portable bio-impedance tomography unit is realized using the Analog Devices AD5933 integrated circuit for measuring complex impedance, an analog front end for interfacing to the human body and analog multiplexers. We implement this as a portable device that can be accessed using Bluetooth Low Energy.
+Electrical impedance analysis is a non-invasive technique used for determining the density and composition of various materials. Regarding the human body, one dimensional analysis can determine water content, body fat, and blood glucose measurements. Using multiple electrode sets, we developed a solution to provide two dimensional (2D) tomography imaging. A portable bio-impedance tomography unit is realized using the Analog Devices AD5933 integrated circuit for measuring complex impedance, an analog front end for interfacing to the human body and analog multiplexers. We implement this as a portable device that can be accessed using Bluetooth Low Energy.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -437,12 +437,12 @@ bioimpedance, AD5933, tomography, impedance, Bluetooth, BLE, smartphone, PSoC, C
 %\hfill October 22, 2017
 
 \section{Project Goals}
-The goals of this project to develop a portable solution for impedance measurements. It shall have the following features:
+The goals of this project are to develop a portable solution for impedance measurements. It shall have the following features:
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
 \begin{itemize}
-\item{Single Frequency Impedance Measurement}%TODO determine to to remove colons generated
-\item{Frequency Swept Impedance Mesaurement}
+\item{Single Frequency Impedance Measurements}%TODO determine to to remove colons generated
+\item{Frequency Swept Impedance Measurements}
 \item{Two-dimensional Impedance Measurements}
 \item{Portability}
 \itme{Bluetooth Connectivity}
@@ -450,18 +450,15 @@ The goals of this project to develop a portable solution for impedance measureme
 
 
 \section{Impedance Overview}
-Impedance can be defined as the effective resistance of an electric circuit or component to alternating current, arising from the combined effects of ohmic resistance and frequency dependent reactance. At a frequency of zero Hertz, the impedance is simply the ohmic resistance. The impedance of a circuit can be though of as complex number, where the real part is the ohmic resistance and the imaginary part is the reactance. Therefore the impedance can be expresses as \[Z=R+jX\]. In application, there are two ideal components that that have purely reactive impedance. That is, the \(R\) is zero; therefore \(Z=jX\). One component is an inductor, whose impedance is expressed as \[Z_L=j\omegaL\] where \(\omega=2*\pi*freq(Hz)\) and L is the inductance in Henries. The other component is a capacitor, whose impedance is expressed as \[Z_C=\frac{1}{j\omegaC}\] where \(\omega=2*\pi*freq(Hz)\) and C is the capacitance in Farads.\newline
+Impedance can be defined as the effective resistance of an electric circuit or component to alternating current, arising from the combined effects of ohmic resistance and frequency dependent reactance. At a frequency of zero Hertz, the impedance is simply the ohmic resistance. The impedance of a circuit can be thought of as a complex number, where the real part is the ohmic resistance and the imaginary part is the reactance. Therefore the impedance can be expressed as \[Z=R+jX\]In application, there are two ideal components that that have purely reactive impedance. That is, the \(R\) is zero; therefore \(Z=jX\). One component is an inductor, whose impedance is expressed as \[Z_L=j\omegaL\] where \(\omega=2*\pi*freq(Hz)\) and L is the inductance in Henries. The other component is a capacitor, whose impedance is expressed as \[Z_C=\frac{1}{j\omegaC}\] where \(\omega=2*\pi*freq(Hz)\) and C is the capacitance in Farads.\newline
 
 \subsection{Applications}
-There are numerous applications where impedance can be used an investigative tool. Electrochemical Impedance Spectroscopy is a process that is used to characterize chemical coatings on materials\cite{macdonald_reflections_2006}. Practically, this allows for analysis such as the anodic corrosion of iron in sulfuric acid, the effectiveness of sensitizers in dye-sensitized solar cells\cite{wang_electrochemical_2005}, or monitoring the corrosion of reinforced concrete\cite{ribeiro_use_2015}. \cite{barsoukov_impedance_2005} focuses a great deal on using Impedance Spectroscopy to analyze battery chemical compositions. Impedance Spectroscopy is also widely used on organic matter, specifically on the human body. This is more formally defined as Electrical Bioimpedance Impedance Spectroscopy (BIS), or Bioelectrical Impedance Analysis (BIA). This include the more commonly known Body Composition Measurements such as total body water (TBW) content and body fat estimation. The human body can be generalized in a circuit that has a complex impedance. It is a combination of purely resistance elements, as well as capacitive elements. The exact values of these components are dependent on many factors including electrode placement, water content, salt content, movement and other factors.\cite{lukaski_assessment_1985} performs a thorough characterization of the human body. Impedance Pneuemography use for monitoring an individuals respiration rates and cardiac output\cite{grenvik_impedance_1972},\cite{larsen_impedance_1984},\cite{ernst_impedance_1999}.
+There are numerous applications where impedance can be used as an investigative tool. Electrochemical Impedance Spectroscopy is a process that is used to characterize chemical coatings on materials\cite{macdonald_reflections_2006}. Practically, this allows for analysis such as the anodic corrosion of iron in sulfuric acid, the effectiveness of sensitizers in dye-sensitized solar cells\cite{wang_electrochemical_2005}, or monitoring the corrosion of reinforced concrete\cite{ribeiro_use_2015}. \cite{barsoukov_impedance_2005} focuses a great deal on using Impedance Spectroscopy to analyze battery chemical compositions. Impedance Spectroscopy is also widely used on organic matter, specifically on the human body. This is more formally defined as Electrical Bioimpedance Spectroscopy (BIS), or Bioelectrical Impedance Analysis (BIA). This includes the more commonly known Body Composition Measurements such as total body water (TBW) content and body fat estimation. These devices widely spread in the market targeting personal health monitoring devices. These implementations include hand grip style analyzers\cite{noauthor_amazon.com:_nodate} or are included in floor scales\cite{noauthor_amazon.com:_nodate-1} . The human body can be generalized in a circuit that has a complex impedance. It is a combination of a purely resistive element, as well as capacitive elements. The exact values of these components are dependent on many factors including electrode placement, water content, salt content, movement and other factors.\cite{lukaski_assessment_1985} performs a thorough characterization of the human body. Impedance Pneuemography is used for monitoring an individuals respiration rates and cardiac output\cite{grenvik_impedance_1972},\cite{larsen_impedance_1984},\cite{ernst_impedance_1999}.
 \newline
-This paper focuses specifically with the two-dimensional (2D) and three-dimensional (3D) application of impedance measurement. This is known at Electrical Impedance Tomography (EIT), and is an imaging technique already in use. This imaging can be performed at a single frequency or across a frequency spectrum. It's worth noting here that EIU is a not a replacement for Magnetic Resonance Imaging (MRI) or X-ray computerize tomography (CT) Scans. This is because unlike a x-ray vector fields in CT scan, the current flowing across the electrodes of a EIT scanner is not fixed in the transverse plane of the measurement electrodes. The results of the EIT scan are more effective the more consistent the composition is as you extend tangentially away from the transverse scan plane. An example of this is the thorax when considering a scan of the lungs, as the lungs are more than an order of magnitude taller than the height of the electrodes place around the thorax. \cite{adler_electrical_2017} thoroughly covers EIT and it's applications, implementation considerations, and image reconstruction. 
+This paper focuses specifically with two-dimensional (2D) and three-dimensional (3D) applications of impedance measurement. This is known at Electrical Impedance Tomography (EIT), and is an imaging technique already in use\cite{noauthor_body_nodate},\cite{noauthor_our_nodate}, but not as widely as the simpler body composition analyzers. Applications of this include  This imaging can be performed at a single frequency or across a frequency spectrum. It's worth noting here that EIU is a not a replacement for Magnetic Resonance Imaging (MRI) or X-ray computerized tomography (CT) Scans. This is because unlike x-ray vector fields in CT scan, the current flowing across the electrodes of a EIT scanner is not fixed in the transverse plane of the measurement electrodes. The results of the EIT scan are better if the material composition is uniform as you extend tangentially away from the transverse scan plane. An example of this is the thorax when considering a scan of the lungs, as the lungs are more than an order of magnitude taller than the height of the electrodes place around the thorax. Unlike CT scans, EIT does not involve ionizing radiation, and also has a much higher temporal resolution in the range of 0.1 millisecond\cite{noauthor_electrical_2004}. \cite{adler_electrical_2017} thoroughly covers the considerations of EIT. Fielded applications include continuous respiration monitoring and breast cancer detection\cite{assenheimer_t-scan_2001}. Ongoing areas of research with promising results are in cervical screenings\cite{brown_relation_2000} but are still faced with challenges when used a method of detecting neural activity\cite{gilad_impedance_2009}.
 
-
-
-\section{Hardware Implementation}
-\subsection{Requirements}
-The measurement of an unknown impedance is can be found by using a measuring the voltage or current waveforms at two different points in the circuit, shown in Fig~\ref{fig:zun}\cite{noauthor_oscilloscope_nodate}. The magnitude and angle of the impedance of an unknown object at a given frequency can be expressed as
+\subsection{Measuring Impedance}
+The measurement of an unknown impedance can be found by measuring the voltage or current waveforms at two different points in the circuit, shown in Fig~\ref{fig:zun}\cite{noauthor_oscilloscope_nodate}. The magnitude and angle of the impedance of an unknown object at a given frequency can be expressed as
 
 \begin{figure} %reference https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions for [!h] options on placing the figures
 \centering
@@ -477,16 +474,19 @@ The measurement of an unknown impedance is can be found by using a measuring the
 \[\alpha_{uut}=\theta-tan^{-1}\frac{-V_{A2}sin\theta}{V_{A1}-V_{A2}cos\theta} \]
 where \(\theta\) is the phase difference between measured voltage at A2 relative to A1.
 \newline
-Another method of determining the impedance is performing a discrete Fourier transform (DFT) on the sampled data of a sine wave passed though the circuit.
+Another method of determining the impedance is performing a discrete Fourier transform (DFT) on the sampled data of a sinusoidal wave passed though the circuit. This is defined as
 \[X(f)=\sum_{n=0}^{N}(x(n)(cos(n)-jsin(n)))\]
-where \(X(f)\) is expressed as a complex number \(R+jX\),\(x(n)\)is the resulting signal is ADC sampled waveform that has passed through the unknown impedance. \(cos(n)\) and \(sin(n)\) are from these sourcing waveform passing being passed into the unknown impedance. The magnitude is defined as \(\sqrt{R^2+X^2}\) and the phase is defined as \(tan^{-1}(Z/R)\times\frac{180\textdegree}{\pi}\) in degrees\cite{noauthor_ad5933_nodate}.
+where \(X(f)\) is expressed complex number \(R+jX\), \(x(n)\)is the resultant waveform at the output of the unknown impedance network. \(cos(n)\) and \(sin(n)\) are the reference waveform being passed into the unknown impedance. The magnitude is defined as \(\sqrt{R^2+X^2}\) and the phase is defined as \(tan^{-1}(Z/R)\times\frac{180\textdegree}{\pi}\) in degrees\cite{noauthor_ad5933_nodate}.
 
+\section{Hardware Implementation}
 
-\subsection{AD5933}
-Analog Devices has introduced a AD5933 integrated circuit (IC) to a monolithic platform for impedance measurement. It is a 1 Megasample per second, 12-Bit Impedance Converter\cite{noauthor_ad5933_nodate}. The response signal from the impedance is sampled by the on-board ADC and a discrete Fourier transform (DFT) is processed by an on-board DSP engine. The DFT algorithm returns a real (R) and imaginary (I) data-word at each output frequency. Once calibrated, the magnitude of the impedance and relative phase of the impedance at each frequency point along the sweep is easily calculated. This is done off chip using the real and imaginary register contents, which can be read from the serial Inter-Integrated Circuit (I2C) interface.\newline
-The AD5933 has been evaluated as a suitable platform for BIA\cite{breniuc_wearable_2014},\cite{ferreira_ad5933-based_2011},\cite{harder_smart_2016},\cite{bakr_aging_2016},\cite{pliquett_interfacing_2012}. The analog interface to the unit-under-test (UUT) is not design specific; is a simple voltage digital-to-analog converter (DAC) that drives a single-ended voltage-mode analog-to-digital converter (ADC). For bioimpedance applications, it is important to have a constant current amplitude over the frequency range of interest to ensure accurate measurements\cite{bertemes-filho_mirrored_2012},\cite{seoane_analog_2008},\cite{pliquett_interfacing_2012},\cite{bera_battery-based_2013}. Additionally, it is also important to not exceed safe current levels passing though the human body as defined in IEC60601-1\cite{noauthor_iec_nodate}. This limit is defined as the Patient Auxiliary Current. For DC current, this is limited to 0.05 miliAmperes. For AC current, this is limited to 0.5 miliAmperes. Using a voltage controlled current source, we can precisely control the current flowing through the test subject. 
-
+\subsection{AD5933 Impedance Analyzer}
+Analog Devices has introduced the AD5933 integrated circuit (IC) as a monolithic platform for impedance measurement. It is a 1 Megasample per second, 12-Bit Impedance Converter\cite{noauthor_ad5933_nodate}. The response signal from the impedance is sampled by the on-board ADC and a DFT is processed by an on-board Digital Signal Processing (DSP) engine. The DFT algorithm returns a real (R) and an imaginary (I) result at each output frequency. Once calibrated, the relative magnitude and phase of the impedance at each frequency point along the sweep is easily calculated. This is done off chip using the real and imaginary register contents, which is accessed from over an Inter-Integrated Circuit (I2C) interface.\newline
 \subsection{Analog Front End}
+The AD5933 has been evaluated as a suitable platform for
+BIA\cite{breniuc_wearable_2014},\cite{ferreira_ad5933-based_2011},\cite{harder_smart_2016},\cite{bakr_aging_2016},\cite{pliquett_interfacing_2012}, but the analog interface to the unit-under-test (UUT) is not design specific; is a simple voltage digital-to-analog converter (DAC) that drives a single-ended voltage-mode analog-to-digital converter (ADC). For bioimpedance applications, it is important to have a constant current amplitude over the frequency range of interest to ensure accurate measurements\cite{bertemes-filho_mirrored_2012},\cite{seoane_analog_2008},\cite{pliquett_interfacing_2012},\cite{bera_battery-based_2013}. Additionally, it is also important to not exceed safe current levels passing through the human body as defined in IEC60601-1\cite{noauthor_iec_nodate}. This limit is defined as the Patient Auxiliary Current. For DC current, this is limited to 0.05 miliAmperes. For AC current, this is limited to 0.5 miliAmperes. Using a controlled current source, we can precisely control the current flowing through the test subject. 
+
+
 
 \begin{figure} %reference https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions for [!h] options on placing the figures
 \centering
@@ -497,10 +497,10 @@ The AD5933 has been evaluated as a suitable platform for BIA\cite{breniuc_wearab
 \end{figure}
 
 
-To accommodate the aforementioned limitations of the AD5933, we implemented a voltage-controlled current source for providing the stimulus the UUT. We also provided a differential input so that the resulting voltage is measured between two electrodes. Differential measurements should eliminate any common mode interference present on the electrodes. The analog front end is based the design described in \cite{harder_smart_2016}. The design shown in In Fig~\ref{fig:front_end} uses an Analog Devices AD8130 differential receiver amplifier\cite{noauthor_ad8130_nodate} as a wide-band voltage controlled current source.
+To accommodate the aforementioned limitations of the AD5933, we implemented a voltage-controlled current source for providing the stimulus the UUT. We also provided a differential input so that the resulting voltage is measured between two electrodes. Differential measurements should eliminate any common mode interference present on the electrodes. The analog front end is based the design described in \cite{harder_smart_2016}. The design shown in Fig~\ref{fig:front_end} uses an Analog Devices AD8130 differential receiver amplifier\cite{noauthor_ad8130_nodate} as a wide-band voltage controlled current source.
 
 \subsubsection{Electrode Multiplexing}
-The AD5933 Impedance analyzer using the analog front end allows for taking measurements across 4 electrodes; two for the excitation and two for the sensing. Spatially, this allows only for a one-dimensional (1D) measurement. For tomography applications, driving one pair of electrodes and sensing on different electrodes is required. \cite{hua_using_1993},\cite{dimas_development_2017},\cite{wang_electrical_nodate}, \cite{vilchez-monge_image_2017} have demonstrated implementations. This allows for a two-dimensional (2D) dataset. For a set of N electrodes, in our case 4 sets, the number of measurements we can have is defined as \[Measurement_{Combinations}=\sum_{i=1}^{i=N-1}i\]. Therefore for 4 sets of sense electrodes, we will have 6 different measurements. These can be shown in the Fig~\ref{fig:combo4}
+The AD5933 Impedance analyzer using an current mode analog front end allows for taking measurements across four electrodes; two for the excitation and two for the sensing. Spatially, this allows only for a one-dimensional (1D) measurement. For tomography applications, driving one pair of electrodes and sensing on multiple pairs of electrodes is required. \cite{hua_using_1993},\cite{dimas_development_2017},\cite{wang_electrical_nodate}, \cite{vilchez-monge_image_2017} have demonstrated implementations. This allows for a two-dimensional (2D) dataset. For a set of N electrodes, in our case 4 sets, the number of measurements we can have is defined as \[Measurement_{Combinations}=\sum_{i=1}^{i=N-1}i\]. Therefore for 4 sets of sense electrodes, we will have 6 different measurements. This demonstrated by the number of vectors in Fig~\ref{fig:combo4}
 
 \begin{figure} %reference https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions for [!h] options on placing the figures
 \centering
@@ -511,45 +511,54 @@ The AD5933 Impedance analyzer using the analog front end allows for taking measu
 \end{figure}
 
 For this design, we not only multiplexed the voltage sense electrodes, but also the current drive electrodes. This means we have \[\sum_{i=1}^{i=N-1}i\times\sum_{i=1}^{i=N-1}i=6\times6=36\]
-different combinations of measurements we can collect.
-
-The multiplexing is realized using two Analog Devices AD1209 analog multiplexers. This devices is a differential 4-to-1 multiplexer. This allows us to switch both the drive and the sense simultaneously. In hindsight, this is a design limitation. This actually brings the number of combinations back down to 6, as the voltage can only be sensed on the same channels as the drive.
-
+different combinations of measurements we can collect. The multiplexing is realized using two Analog Devices AD1209 analog multiplexers. This IC is a differential 4-to-1 multiplexer. This allows us to switch both the drive and the sense. A shortcoming of this design is that both addresses are switching using the same address bus, this limits the independent switching control of the positive and negative electrode pairs. This limits the to back down to the original six.
 
 \begin{figure} %reference https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions for [!h] options on placing the figures
 \centering
-\includegraphics[width=10cm ]{./graphics/mux.png}
+\includegraphics[width=5cm ]{./graphics/mux.png}
 \centering
 \caption{Electrode Mux Configuration}
 \label{fig:mux}
 \end{figure}
 
 
-\subsubsection{Device Controller}
-The Cypress CY8CKIT-142 Module. This module is provided as a part of a Bluetooth Low Energy development kit.
+\subsection{Device Controller}
+The Cypress CY5671\cite{noauthor_cy5671:_nodate} module was chosen for as the localized controller on the device. This module is provides integrate I2C and Bluetooth Low Energy (BLE) peripherals for communication between the AD5933 and user application respectively. 
 
-\section{Software Implementation}
-\subsection {Device States}
-
-
-\subsection{Communication}
-
+\subsection{Printed Circuit Board Assembly}
+A custom printed circuit board assembly in Fig~\ref{fig:pcb} was developed for hosting the AD5933 and AFE as well as providing an easy electro-mechanical interface to the CY5671. This board was developed using KiCad open source EDA software\cite{noauthor_kicad_nodate}. This PCBA was realized using four layers with priority routing given to the analog signals.
 
 \begin{figure} %reference https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions for [!h] options on placing the figures
 \centering
-\includegraphics[width=9cm ]{./graphics/zynq_w_gpio.png}
+\includegraphics[width=5cm ]{./graphics/pcba.png}
 \centering
-\caption{Design with GPIO peripheral.}
-\label{fig:gpio}
+\caption{Custom PCBA}
+\label{fig:pcb}
 \end{figure}
 
-In Fig~\ref{fig:gpio}, 
 
-\tt{
-class DefaultFPGARoccConfig \newline
-class DefaultFPGA32KBL2Config \newline
-class DefaultFPGA256KBL2Config \newline
-class DefaultFPGADualCoreConfig}\rm{}
+\section{Software Implementation}
+\subsection{Device States}
+TBD
+\subsection{Bluetooth Communication}
+TBD
+\subsection{Android Application}
+TBD
+
+
+\section{Results}
+\subsection{Single Frequency}
+TBD
+\subsection{Calibration}
+TBD
+\subsection{Frequency Sweep}
+TBD
+
+% \tt{
+% class DefaultFPGARoccConfig \newline
+% class DefaultFPGA32KBL2Config \newline
+% class DefaultFPGA256KBL2Config \newline
+% class DefaultFPGADualCoreConfig}\rm{}
 
 
 
@@ -579,7 +588,6 @@ class DefaultFPGADualCoreConfig}\rm{}
 % Note that the IEEE typically puts floats only at the top, even when this
 % results in a large percentage of a column being occupied by floats.
 
-
 % An example of a double column floating figure using two subfigures.
 % (The subfig.sty package must be loaded for this to work.)
 % The subfigure \label commands are set within each subfloat command,
@@ -606,7 +614,6 @@ class DefaultFPGADualCoreConfig}\rm{}
 % labels, the optional argument to \subfloat must be present. If a
 % subcaption is not desired, just leave its contents blank,
 % e.g., \subfloat[].
-
 
 % An example of a floating table. Note that, for IEEE style tables, the
 % \caption command should come BEFORE the table and, given that table
@@ -636,7 +643,6 @@ class DefaultFPGADualCoreConfig}\rm{}
 %\end{tabular}
 %\end{table}
 
-
 % Note that the IEEE does not put floats in the very first column
 % - or typically anywhere on the first page for that matter. Also,
 % in-text middle ("here") positioning is typically not used, but it
@@ -648,13 +654,7 @@ class DefaultFPGADualCoreConfig}\rm{}
 % \fnbelowfloat command of the stfloats package.
 
 \section{Conclusion}
-RISC-V is an open ISA designed to break open the world of computer architecture. It is making the push to be the first successful open ISA. The ISA is surrounded by many advantages including a software toolchain and a core design tool to generate inexpensive and reliable hardware. This paper documents our investigation into this ISA and its supporting tools. During the course of the paper we have discussed how we tested these tools utilizing the existing documentation from UC Berkeley for the purpose of improving upon it and understanding RISC-V.
-
-We were able to load and test the pre-built designs in their repositories as well as complete their examples. We were also able to learn about the Rocket Chip generator tool and Chisel, its supporting language. Using these we were able to build a basic rocket core from source. Also using the generator, we made modifications to the core design and configuration and synthesized these cores. We also investigated adding a coprocessor (called a RoCC) and how to add it to a core design. We were able to synthesize this as well. 
-
-We had a few failures along the way. Many of these were due to the state of the repositories being in flux or due to venturing into underdocumented or undocumented pieces of the Rocket Chip generator and RISC-V. We believe that these failures can bring to light information that needs future investigation and documentation. 
-
-It is these authors opinion that RISC-V is poised for success. It is at a critical time in which it is being presented to the world, picked apart, and tested. As such we feel that researching and understanding the ISA and the tools that have been created to support it will help expand it use and usability.
+TBD
 
 % if have a single appendix:
 %\appendix[Proof of the Zonklar Equations]
@@ -669,12 +669,16 @@ It is these authors opinion that RISC-V is poised for success. It is at a critic
 % \subsection or using \label (\appendices by itself
 % starts a section numbered zero.)
 %
-\appendix{Source Material}
-All source material for this project is provided under the MIT license and is available at \url{https://github.com/ashtonchase/portable_impedance_tomography} . 
+
+
+
+%    \appendix{Source Material}
+%    All source material for this project is provided under the MIT license and is available at \url{https://github.com/ashtonchase/portable_impedance_tomography} . 
 
 % use section* for acknowledgment
-\section*{Acknowledgment}
-TBD
+
+%     \section*{Acknowledgment}
+%     TBD
 
 
 % Can use something like this to put references on a page
@@ -688,6 +692,7 @@ TBD
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
 % adjust value as needed - may need to be readjusted if
+
 % the document is modified later
 %\IEEEtriggeratref{8}
 % The "triggered" command can be changed if desired:
