@@ -8,9 +8,6 @@
 <files />
 <projects>
 <v>.\AD5933_PSOC.cydsn\AD5933_PSOC.cyprj</v>
-<v>.\BLE_AlertNotification01.cydsn\BLE_AlertNotification01.cyprj</v>
-<v>..\..\..\..\001-91162_AN91162\AN91162\AN91162.cydsn\AN91162.cyprj</v>
-<v>.\Capacitance_BLE.cydsn\Capacitance_BLE.cyprj</v>
 </projects>
 <workspace_id v="af4d4063-1637-475b-b162-439e186fe90c" />
 <WriteAppVersionLastSavedWith v="4.1.0.3210" />
