@@ -2,9 +2,9 @@ digraph mux{
 	
 rankdir=LR;
 splines=false;
-ratio=0.75
+ratio=1.5
 
-subgraph cluster_dut{
+Subgraph cluster_dut{
 
 	"1"
 	"2"
