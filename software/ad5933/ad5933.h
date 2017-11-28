@@ -31,6 +31,10 @@
 
 #include "stdint.h"
 
+#define PI 3.14159265
+   
+    
+    
 /* Register Map */
 #define REG_CONTROL 0x80
 #define REG_CONTRO_NUM_BYTES 2
@@ -67,8 +71,10 @@
 #define REG_IMAG_NUM_BYTES 2
 #define REG_IMAG_MSB REG_IMAG
 #define REG_IMAG_LSB 0x97
+    
+#define ADDRESS_POINTER_CMD 0b10110000
 
-
+#define CLK_RATE_HZ_INTERNAL 16776000
 
 
 /* Control Register Map */
@@ -82,7 +88,7 @@
 #define CONTROL_REG_PWR_DOWN          (0x0A << 4)
 #define CONTROL_REG_STANDBY           (0x0B << 4)
 // Output Voltage Range
-#define CONTROL_OUT_VOLT_BITMASK 0x02
+#define CONTROL_OUT_VOLT_BITMASK (0x03 << 1)
 #define CONTROL_OUT_VOLT_2VPP    (0x00 << 1)
 #define CONTROL_OUT_VOLT_200MVPP (0x01 << 1)
 #define CONTROL_OUT_VOLT_400MVPP (0x02 << 1)
@@ -103,6 +109,20 @@
 #define STATUS_VALID_IMPEDANCE 0x02
 #define STATUS_SWEEP_COMPLETE 0x04
 
+    
+ typedef struct ad5933_control{
+    uint8_t             :3;
+    uint8_t clockSrc    :1;
+    uint8_t reset       :1;
+    uint8_t             :3;
+    uint8_t pgaGain     :1;
+    uint8_t voutRange   :2;
+    uint8_t             :1;
+    uint8_t mode        :4;
+       
+} ad5933_control;
+    
+    
 typedef struct ad5933_deviceConfig{
 
   uint32_t clockFreq;
@@ -113,13 +133,17 @@ typedef struct ad5933_deviceConfig{
 
 uint8_t ad5933_Init( ad5933_deviceConfig *config);
 
+uint8_t ad5933_Reset(ad5933_deviceConfig *config);
+
+
 uint8_t ad5933_PerformFrequencySweep( ad5933_deviceConfig *config,
 				     uint32_t startFreq,
 				     uint32_t incrementFreq,
 				     uint16_t numOfIncrements,
-				     uint16_t *realArray,
-				     uint16_t *imagArray);
+				     int16_t *realArray,
+				     int16_t *imagArray);
 				     
+
 
 uint8_t ad5933_ConvertFreq( ad5933_deviceConfig *config,
 			uint32_t desiredFreq,
@@ -149,12 +173,16 @@ uint8_t ad9533_WaitForValidTemp(ad5933_deviceConfig *config);
 uint8_t ad9533_WaitForValidImpedance(ad5933_deviceConfig *config);
 
 uint8_t ad9533_WaitForSweepComplete(ad5933_deviceConfig *config);
+uint8_t ad9533_IsSweepComplete(ad5933_deviceConfig *config, uint8_t *yesNo);
 
 uint8_t ad5933_ReadRealResult(ad5933_deviceConfig *config,
 			      int16_t *real);
 
 uint8_t ad5933_ReadImagResult(ad5933_deviceConfig *config,
 			      int16_t *imag);
+uint8_t ad5933_ReadTempResult(ad5933_deviceConfig *config,
+			      int16_t *temp);
+
 
 uint8_t ad5933_InitWithStartFreq(ad5933_deviceConfig *config);
 uint8_t ad5933_StartSweep(ad5933_deviceConfig *config);
@@ -169,4 +197,8 @@ uint8_t ad5933_SetPGAx5(ad5933_deviceConfig *config);
 uint8_t ad5933_SetVoutRange(ad5933_deviceConfig *config,
 			    uint8_t range );
 
+uint8_t ad5933_readRegister(ad5933_deviceConfig *config,uint8_t reg,  uint8_t *data);
+
+double ad5933_getMagnitude(int16_t real, int16_t imag);
+double ad5933_getPhase(int16_t real, int16_t imag);
 #endif
