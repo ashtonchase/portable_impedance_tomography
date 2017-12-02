@@ -120,7 +120,7 @@ start:
   }
 
   
-  EN_Write(0);
+  //EN_Write(0);
 
   for(;;)
     {
