@@ -342,7 +342,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title {A Portable Impedance\\Tomography Platform}
+\title {An Implementation of a Portable Impedance\\Tomography Platform System}
 
 %
 %
@@ -404,7 +404,7 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-Electrical impedance analysis is a non-invasive technique used for determining the density and composition of various materials. Regarding the human body, one dimensional analysis can determine water content, body fat, and blood glucose measurements. Using multiple electrode sets, we developed a solution to provide two dimensional (2D) tomography imaging. A portable bio-impedance tomography unit is realized using the Analog Devices AD5933 integrated circuit for measuring complex impedance, an analog front end for interfacing to the human body and analog multiplexers. We implement this as a portable device that can be accessed using Bluetooth Low Energy.
+Electrical impedance analysis is a non-invasive technique used for determining the density and composition of various materials. Using multiple electrode pairs, we developed a solution to provide two dimensional (2D) tomography imaging. A portable bio-impedance tomography unit is realized using the Analog Devices AD5933 integrated circuit for measuring complex impedance, an analog front end for interfacing to the human body and analog multiplexers. We implement this as a portable device that uses Bluetooth Low Energy as the interface.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -428,10 +428,14 @@ bioimpedance, AD5933, tomography, impedance, Bluetooth, BLE, smartphone, PSoC, C
 
 \section{Introduction}
 
-\IEEEPARstart{T}{he} impedance of an object can provide meaningful insight into the composition of that particular object. 
+\IEEEPARstart{T}{he} impedance of an object can be a useful classifier of an object and its composition. In this paper, we will focus on its use as a physiological measurement tool, known as bioelectical impedance analysis. This is accomplished using electrodes connected to a device that generates a stimulus a given frequency and measures the response. By increasing the number of electrodes and multiplexing them, it is possible to develop a two-dimensional (2D) representation of the object under test. This is known as Electrical Impedance Tomography (EIT). While this can be accomplished using laboratory test equipment and post-processing with a computer, medical uses dictate portability as a requirements for such systems where the it could be affixed to a person while still allowing for complete mobility. In this paper, we describe a portable system using an impedance analyzer integrated circuit. For proper interfacing to the human body, we implement a 4-electrode, analog front end. This uses two electrodes driven by a voltage controlled current source, and two electrodes for a differential voltage measurement capturing the response. We added analog multiplexers to allow for 36 different spatial measurements. Finally, we added a custom Bluetooth Low Energy (BLE) service for complete control of the platform. 
 \newline 
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
+
+\section{Literature Survey}
+The first part of this paper discusses the basic concepts of impedance and how we can quantify it. We then discuss existing application of impedance as a tool.  We then discuss the challenges of measuring impedance of the human body. We then present our design of a portable impedance tomography platform. We go on to describe out results, and then discuss related works. 
+
 
 %\hfill acj
 %\hfill October 22, 2017
@@ -441,9 +445,10 @@ The goals of this project are to develop a portable solution for impedance measu
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
 \begin{itemize}
-\item{Single Frequency Impedance Measurements}%TODO determine to to remove colons generated
-\item{Frequency Swept Impedance Measurements}
+\item{Time Domain Impedance Measurements}
+\item{Frequency Domain Impedance Measurements}
 \item{Two-dimensional Impedance Measurements}
+\item{Effective Body Interface}
 \item{Portability}
 \itme{Bluetooth Connectivity}
 \end{itemize}
@@ -453,9 +458,11 @@ The goals of this project are to develop a portable solution for impedance measu
 Impedance can be defined as the effective resistance of an electric circuit or component to alternating current, arising from the combined effects of ohmic resistance and frequency dependent reactance. At a frequency of zero Hertz, the impedance is simply the ohmic resistance. The impedance of a circuit can be thought of as a complex number, where the real part is the ohmic resistance and the imaginary part is the reactance. Therefore the impedance can be expressed as \[Z=R+jX\]In application, there are two ideal components that that have purely reactive impedance. That is, the \(R\) is zero; therefore \(Z=jX\). One component is an inductor, whose impedance is expressed as \[Z_L=j\omegaL\] where \(\omega=2*\pi*freq(Hz)\) and L is the inductance in Henries. The other component is a capacitor, whose impedance is expressed as \[Z_C=\frac{1}{j\omegaC}\] where \(\omega=2*\pi*freq(Hz)\) and C is the capacitance in Farads.\newline
 
 \subsection{Applications}
-There are numerous applications where impedance can be used as an investigative tool. Electrochemical Impedance Spectroscopy is a process that is used to characterize chemical coatings on materials\cite{macdonald_reflections_2006}. Practically, this allows for analysis such as the anodic corrosion of iron in sulfuric acid, the effectiveness of sensitizers in dye-sensitized solar cells\cite{wang_electrochemical_2005}, or monitoring the corrosion of reinforced concrete\cite{ribeiro_use_2015}. \cite{barsoukov_impedance_2005} focuses a great deal on using Impedance Spectroscopy to analyze battery chemical compositions. Impedance Spectroscopy is also widely used on organic matter, specifically on the human body. This is more formally defined as Electrical Bioimpedance Spectroscopy (BIS), or Bioelectrical Impedance Analysis (BIA). This includes the more commonly known Body Composition Measurements such as total body water (TBW) content and body fat estimation. These devices widely spread in the market targeting personal health monitoring devices. These implementations include hand grip style analyzers\cite{noauthor_amazon.com:_nodate} or are included in floor scales\cite{noauthor_amazon.com:_nodate-1} . The human body can be generalized in a circuit that has a complex impedance. It is a combination of a purely resistive element, as well as capacitive elements. The exact values of these components are dependent on many factors including electrode placement, water content, salt content, movement and other factors.\cite{lukaski_assessment_1985} performs a thorough characterization of the human body. Impedance Pneuemography is used for monitoring an individuals respiration rates and cardiac output\cite{grenvik_impedance_1972},\cite{larsen_impedance_1984},\cite{ernst_impedance_1999}.
+There are numerous applications where impedance can be used as an investigative tool. Electrochemical Impedance Spectroscopy is a process that is used to characterize chemical coatings on materials\cite{macdonald_reflections_2006}. Practically, this allows for analysis such as the anodic corrosion of iron in sulfuric acid, the effectiveness of sensitizers in dye-sensitized solar cells\cite{wang_electrochemical_2005}, or monitoring the corrosion of reinforced concrete\cite{ribeiro_use_2015}. \cite{barsoukov_impedance_2005} focuses a great deal on using Impedance Spectroscopy to analyze battery chemical compositions. Impedance Spectroscopy is also widely used on organic matter, specifically on the human body. This is more formally defined as Electrical Bioimpedance Spectroscopy (BIS), or Bioelectrical Impedance Analysis (BIA). This includes the more commonly known Body Composition Measurements such as total body water (TBW) content and body fat estimation. These devices widely spread in the market targeting personal health monitoring devices. These implementations include hand grip style analyzers\cite{noauthor_amazon.com:_nodate} or are included in floor scales\cite{noauthor_amazon.com:_nodate-1}.
 \newline
-This paper focuses specifically with two-dimensional (2D) and three-dimensional (3D) applications of impedance measurement. This is known at Electrical Impedance Tomography (EIT), and is an imaging technique already in use\cite{noauthor_body_nodate},\cite{noauthor_our_nodate}, but not as widely as the simpler body composition analyzers. Applications of this include  This imaging can be performed at a single frequency or across a frequency spectrum. It's worth noting here that EIU is a not a replacement for Magnetic Resonance Imaging (MRI) or X-ray computerized tomography (CT) Scans. This is because unlike x-ray vector fields in CT scan, the current flowing across the electrodes of a EIT scanner is not fixed in the transverse plane of the measurement electrodes. The results of the EIT scan are better if the material composition is uniform as you extend tangentially away from the transverse scan plane. An example of this is the thorax when considering a scan of the lungs, as the lungs are more than an order of magnitude taller than the height of the electrodes place around the thorax. Unlike CT scans, EIT does not involve ionizing radiation, and also has a much higher temporal resolution in the range of 0.1 millisecond\cite{noauthor_electrical_2004}. \cite{adler_electrical_2017} thoroughly covers the considerations of EIT. Fielded applications include continuous respiration monitoring and breast cancer detection\cite{assenheimer_t-scan_2001}. Ongoing areas of research with promising results are in cervical screenings\cite{brown_relation_2000} but are still faced with challenges when used a method of detecting neural activity\cite{gilad_impedance_2009}.
+The human body can be generalized in a circuit that has a complex impedance. It is a combination of a purely resistive element, as well as capacitive elements. The exact values of these components are dependent on many factors including electrode placement, water content, salt content, movement and other factors.\cite{lukaski_assessment_1985} performs a thorough characterization of the human body. Impedance Pneuemography has been used for monitoring an individuals respiration rates and cardiac output\cite{grenvik_impedance_1972},\cite{larsen_impedance_1984},\cite{ernst_impedance_1999}.
+\newline
+This paper focuses specifically with two-dimensional (2D) and three-dimensional (3D) applications of impedance measurement. This is known at Electrical Impedance Tomography (EIT), and is an imaging technique already in use\cite{noauthor_body_nodate},\cite{noauthor_our_nodate}, but not as widely as the simpler body composition analyzers. This imaging can be performed at a single frequency or across a frequency spectrum. It's worth noting here that EIU is a not a replacement for Magnetic Resonance Imaging (MRI) or X-ray computerized tomography (CT) Scans. This is because unlike x-ray vector fields in CT scan, the current flowing across the electrodes of a EIT scanner is not fixed in the transverse plane of the measurement electrodes. The results of the EIT scan are better if the material composition is uniform as you extend tangentially away from the transverse scan plane. An example of this is the thorax when considering a scan of the lungs, as the lungs are more than an order of magnitude taller than the height of the electrodes place around the thorax. Unlike CT scans, EIT does not involve ionizing radiation, and also has a much higher temporal resolution in the range of 0.1 millisecond\cite{noauthor_electrical_2004}. \cite{adler_electrical_2017} thoroughly covers the considerations of EIT. Fielded applications include continuous respiration monitoring and breast cancer detection\cite{assenheimer_t-scan_2001}. Ongoing areas of research with promising results are in cervical screenings\cite{brown_relation_2000} but are still faced with challenges when used a method of detecting neural activity\cite{gilad_impedance_2009}.
 
 \subsection{Measuring Impedance}
 The measurement of an unknown impedance can be found by measuring the voltage or current waveforms at two different points in the circuit, shown in Fig~\ref{fig:zun}\cite{noauthor_oscilloscope_nodate}. The magnitude and angle of the impedance of an unknown object at a given frequency can be expressed as
@@ -541,7 +548,19 @@ A custom printed circuit board assembly in Fig~\ref{fig:pcb} was developed for h
 \subsection{Device States}
 TBD
 \subsection{Bluetooth Communication}
-TBD
+
+Bluetooth Low Energy (BLE) was chosen as the communication method to the platform. A wireless method provides for user conveinience as tethering is not required, but also provides for isolation from noise generating computers and other equipment. There a numerous wireless protocols that can be used for interfacing to microcontrollers, but given the prevalence of BLE capable smartphones, this seems to be the obvious choice. A custom Bluetooth Low Energy service was implemented on the PSoC 4 BLE device. The Bluetooth service is composed of multiple characteristics. There are a reflection of all of the available registers on the AD5933. The result register includes the real and imaginary result from the AD5933, but also the frequency, transmit and receive multiplexer state and current time. 
+
+\begin{figure} %reference https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions for [!h] options on placing the figures
+\centering
+\includegraphics[width=5cm ]{../graphics/ble_service.png}
+\centering
+\caption{BLE Service}
+\label{fig:ble}
+\end{figure}
+
+
+
 \subsection{Android Application}
 TBD
 
@@ -553,6 +572,11 @@ TBD
 TBD
 \subsection{Frequency Sweep}
 TBD
+
+
+\section {Related Work}
+
+
 
 % \tt{
 % class DefaultFPGARoccConfig \newline
