@@ -163,6 +163,24 @@
 <v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
 <v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
 <v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\debug.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\EN.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\EN_PM.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\gnd.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\gnd_PM.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\gnd2.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\gnd2_PM.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_BOOT.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_I2C.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_I2C_BOOT.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_I2C_INT.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_I2C_MASTER.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_PM.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_SCB_IRQ.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_SCBCLK.lst</v>
+<v>Workspace\AD5933_PSOC\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_scl.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
