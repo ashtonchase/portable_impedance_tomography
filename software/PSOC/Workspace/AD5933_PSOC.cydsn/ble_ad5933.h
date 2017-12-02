@@ -33,6 +33,7 @@ typedef __attribute__((__packed__)) struct ad5933_result{
   uint32_t freq  ;
   uint8_t tx ;
   uint8_t rx ;
+  uint64_t time;
         
 }ad5933_result;
 

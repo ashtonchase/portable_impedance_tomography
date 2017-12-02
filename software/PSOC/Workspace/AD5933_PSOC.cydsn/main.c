@@ -41,7 +41,7 @@ int main(void)
   CyGlobalIntEnable; /* Enable global interrupts. */
   ad5933_deviceConfig *config = &ad5933;                    
   Iic_Init(0);
-
+  RTC_Start();
     
 #ifdef DEBUG_UART_ENABLED
   UART_DEB_Start();    
@@ -191,6 +191,8 @@ int main(void)
 	    bledata.result.imag=imag;
 	    bledata.result.tx=sel;
 	    bledata.result.rx=sel;
+        bledata.result.time=RTC_GetUnixTime();
+
 	 
 	    IndicateResults();
         

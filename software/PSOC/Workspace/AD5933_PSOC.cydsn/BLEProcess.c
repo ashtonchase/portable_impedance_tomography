@@ -54,30 +54,7 @@ void GeneralEventHandler(uint32 event, void * eventParam)
       wrReqParam = (CYBLE_GATTS_WRITE_REQ_PARAM_T *) eventParam;
 			
   
-      /* Handling Notification Enable */
-      if(wrReqParam->handleValPair.attrHandle == CYBLE_IMPEDANCE_ANALYZER_TIME_CLIENT_CHARACTERISTIC_CONFIGURATION_DESC_HANDLE)
-	{
-	  CYBLE_GATT_HANDLE_VALUE_PAIR_T    ImpTimeNotificationCCDHandle;
-	  uint8 TimeCCDValue[2];
-				
-	  /* Extract CCCD Notification enable flag */
-	  sendNotifications = wrReqParam->handleValPair.value.val[0];
-				
-	  /* Write the present SPI notification status to the local variable */
-	  TimeCCDValue[0] = sendNotifications;
-				
-	  TimeCCDValue[1] = 0x00;
-				
-	  /* Update CCCD handle with notification status data*/
-	  ImpTimeNotificationCCDHandle.attrHandle = CYBLE_IMPEDANCE_ANALYZER_TIME_CLIENT_CHARACTERISTIC_CONFIGURATION_DESC_HANDLE;
-				
-	  ImpTimeNotificationCCDHandle.value.val = TimeCCDValue;
-				
-	  ImpTimeNotificationCCDHandle.value.len = 2;
-				
-	  /* Report data to BLE component for sending data when read by Central device */
-	  CyBle_GattsWriteAttributeValue(&ImpTimeNotificationCCDHandle, 0, &cyBle_connHandle, CYBLE_GATT_DB_LOCALLY_INITIATED);			
-	}
+    
             
       if(wrReqParam->handleValPair.attrHandle == CYBLE_IMPEDANCE_ANALYZER_STATUS_CLIENT_CHARACTERISTIC_CONFIGURATION_DESC_HANDLE)
 	{
