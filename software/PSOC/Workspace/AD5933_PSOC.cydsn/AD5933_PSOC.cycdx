@@ -3,8 +3,6 @@
   <block name="gnd2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="gnd" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="pwr1_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="cy_lfclk" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="UART_DEB" BASE="0x0" SIZE="0x0" desc="Serial Communication Block" visible="true" hidden="false">
     <block name="clock_VM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="sclk_s_VM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -349,7 +347,9 @@
       <field name="BREAK_DETECT" from="11" to="11" access="RW" resetVal="" desc="Logical and of corresponding request and mask bits" hidden="false" />
     </register>
   </block>
-  <block name="pwr1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_lfclk" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="RTC" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="SEL0" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="I2C" BASE="0x0" SIZE="0x0" desc="Serial Communication Block" visible="true" hidden="false">
     <block name="sclk_s_VM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -704,7 +704,8 @@
     <block name="cy_m0s8_ble" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="bless_isr" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   </block>
+  <block name="EN" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="pwr1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="SEL1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="AUX_ANALOG" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="EN" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
 </blockRegMap>

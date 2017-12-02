@@ -1,0 +1,7 @@
+{signal: [
+  
+  {wave: 'x34.4.4.4.x.34', data: ['0x55', 'time', 'freq', 'real','imag','0x55','time']},
+  
+  
+],
+  "config" : { "hscale" : 1 }}

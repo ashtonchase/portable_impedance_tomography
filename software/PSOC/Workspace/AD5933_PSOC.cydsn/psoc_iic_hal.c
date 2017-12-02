@@ -14,6 +14,7 @@
 
 extern ad5933_deviceConfig ad5933;
 
+#define I2C_TIMEOUT_MS 2000
 
 /** Initialize the IIC Device
  *
@@ -38,35 +39,37 @@ uint8_t Iic_RxByte(const uint8_t addr,
 		   uint8_t *rxValue ){
 			
 			//Start a write to get the address pointer set up
-			if(I2C_I2CMasterSendStart(addr,I2C_I2C_WRITE_XFER_MODE)!=I2C_I2C_MSTR_NO_ERROR){
-				I2C_I2CMasterSendStop();
+			if(I2C_I2CMasterSendStart(addr,I2C_I2C_WRITE_XFER_MODE,I2C_TIMEOUT_MS)!=I2C_I2C_MSTR_NO_ERROR){
+				I2C_I2CMasterSendStop(I2C_TIMEOUT_MS);
 				return 1;
 			}
 			            
-            if(I2C_I2CMasterWriteByte(ADDRESS_POINTER_CMD)!=I2C_I2C_MSTR_NO_ERROR){
-             return 1;   
+            if(I2C_I2CMasterWriteByte(ADDRESS_POINTER_CMD, I2C_TIMEOUT_MS)!=I2C_I2C_MSTR_NO_ERROR){
+             
+                return 1;   
             }
             
             // Send address
-			if(I2C_I2CMasterWriteByte(reg)!=I2C_I2C_MSTR_NO_ERROR){
-				I2C_I2CMasterSendStop();
+			if(I2C_I2CMasterWriteByte(reg,I2C_TIMEOUT_MS)!=I2C_I2C_MSTR_NO_ERROR){
+				I2C_I2CMasterSendStop(I2C_TIMEOUT_MS);
 				return 1;
 			}
             
             
             
-            if(I2C_I2CMasterSendStop()!=I2C_I2C_MSTR_NO_ERROR)
+            if(I2C_I2CMasterSendStop(I2C_TIMEOUT_MS)!=I2C_I2C_MSTR_NO_ERROR)
                 return 1; 
                 
             
 			// Send a restart as we don't really want to write.
-			if(I2C_I2CMasterSendStart(addr,I2C_I2C_READ_XFER_MODE)!=I2C_I2C_MSTR_NO_ERROR)
+			if(I2C_I2CMasterSendStart(addr,I2C_I2C_READ_XFER_MODE,I2C_TIMEOUT_MS)!=I2C_I2C_MSTR_NO_ERROR)
 			    return 1; 
 			
 			//read the value
-		   *rxValue=I2C_I2CMasterReadByte(I2C_I2C_NAK_DATA);
+		   if(I2C_I2CMasterReadByte(I2C_I2C_NAK_DATA,rxValue, I2C_TIMEOUT_MS))
+            return 1;
 		
-            if(I2C_I2CMasterSendStop()!=I2C_I2C_MSTR_NO_ERROR)
+            if(I2C_I2CMasterSendStop(I2C_TIMEOUT_MS)!=I2C_I2C_MSTR_NO_ERROR)
                 return 1; 
             else 
             return 0;
@@ -85,22 +88,22 @@ uint8_t Iic_TxByte(const uint8_t addr,
 		   const uint8_t reg,
 		   const uint8_t txValue){
     // Send the Start
-    if(I2C_I2CMasterSendStart(addr,I2C_I2C_WRITE_XFER_MODE)!=I2C_I2C_MSTR_NO_ERROR){
-				I2C_I2CMasterSendStop();
+    if(I2C_I2CMasterSendStart(addr,I2C_I2C_WRITE_XFER_MODE,I2C_TIMEOUT_MS)!=I2C_I2C_MSTR_NO_ERROR){
+				I2C_I2CMasterSendStop(I2C_TIMEOUT_MS);
 				return 1;
 			}
     // Sned the register to write to
-    if(I2C_I2CMasterWriteByte(reg)!=I2C_I2C_MSTR_NO_ERROR){
-				I2C_I2CMasterSendStop();
+    if(I2C_I2CMasterWriteByte(reg,I2C_TIMEOUT_MS)!=I2C_I2C_MSTR_NO_ERROR){
+				I2C_I2CMasterSendStop(I2C_TIMEOUT_MS);
 				return 1;
 			}
     // Send the value
-    if(I2C_I2CMasterWriteByte(txValue)!=I2C_I2C_MSTR_NO_ERROR){
-				I2C_I2CMasterSendStop();
+    if(I2C_I2CMasterWriteByte(txValue,I2C_TIMEOUT_MS)!=I2C_I2C_MSTR_NO_ERROR){
+				I2C_I2CMasterSendStop(I2C_TIMEOUT_MS);
 				return 1;
 			}
     // Send the stop
-    if(I2C_I2CMasterSendStop()==I2C_I2C_MSTR_NO_ERROR)
+    if(I2C_I2CMasterSendStop(I2C_TIMEOUT_MS)==I2C_I2C_MSTR_NO_ERROR)
 	    return 0; 
     else 
 	    return 1;

@@ -12,6 +12,9 @@
 #include "main.h"
 
 //#define NO_AD5933	
+#define DEBUG_ON_STARTUP
+
+
 struct ad5933_ble_data bledata;
 struct ad5933_deviceConfig ad5933;
 void sendTimeNotification(void);
@@ -32,34 +35,22 @@ int incr=0;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 int main(void)
 {
    
   CyGlobalIntEnable; /* Enable global interrupts. */
   ad5933_deviceConfig *config = &ad5933;                    
-  EN_Write(1);
+  Iic_Init(0);
+  RTC_Start();
+    
 #ifdef DEBUG_UART_ENABLED
   UART_DEB_Start();    
   Report("#Started...\r\n");
 
 #endif
-
-SEL0_Write(0);
-	  SEL1_Write(1);
+    
  
   /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-  Iic_Init(0);
   config->address=0x0D;
 
   ad5933_Reset(config);
@@ -85,16 +76,24 @@ SEL0_Write(0);
   ReadCharacteristic(&bledata.settleTime,sizeof(bledata.settleTime),CYBLE_IMPEDANCE_ANALYZER_SETTLETIME_CHAR_HANDLE);
 
   config->clockFreq=CLK_RATE_HZ_INTERNAL;
-start:              
+
+
+
+#ifdef DEBUG_ON_STARTUP
+
+  EN_Write(1);
+  SEL0_Write(0);
+  SEL1_Write(1);
+ start:              
   incr=0;
   ad5933_SetStartFreq(config, bledata.startFreq);
   ad5933_SetIncrFreq(config,bledata.incFreq);
   ad5933_SetIncrCount(config,bledata.numIncr);
   ad5933_SetSettleTime(config,bledata.settleTime,1);
-    ad5933_SetVoutRange(config, bledata.voutRange);
+  ad5933_SetVoutRange(config, bledata.voutRange);
   ad5933_Standby(config);
   ad5933_InitWithStartFreq(config);
- for (int i=0; i<100 ; i++);
+  for (int i=0; i<100 ; i++);
   // Wait for a little bit. 
  
 
@@ -112,16 +111,16 @@ start:
   wait:    
     if (ad9533_IsSweepComplete(config, &yesNo) != 0) return 1;
     if (yesNo){
-       // goto start;
-        break;
+      // goto start;
+      break;
     }else
       if(ad5933_IncrementFreq(config)!=0) return 1;
-      goto next;
+    goto next;
   }
 
+#endif
   
-  EN_Write(0);
-
+  //EN_Write(0);
   for(;;)
     {
         
@@ -192,6 +191,8 @@ start:
 	    bledata.result.imag=imag;
 	    bledata.result.tx=sel;
 	    bledata.result.rx=sel;
+        bledata.result.time=RTC_GetUnixTime();
+
 	 
 	    IndicateResults();
         
@@ -219,10 +220,7 @@ start:
 	//Send Status Notification
 	sendStatusNotification();
 	EN_Write(0);          
-      }
-       
-      
-          
+      }         
         
       // time++;
       UpdateCharacteristic(&time, sizeof(uint8_t),CYBLE_IMPEDANCE_ANALYZER_TIME_CHAR_HANDLE);
@@ -253,8 +251,6 @@ void IndicateResults(void){
 	}while((CYBLE_ERROR_OK != apiResult)  && (CYBLE_STATE_CONNECTED == cyBle_state));
 		
     }		
-    
-    
     
 }
    
