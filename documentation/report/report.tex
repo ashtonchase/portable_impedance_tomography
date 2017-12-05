@@ -537,7 +537,7 @@ A custom printed circuit board assembly in Fig~\ref{fig:pcb} was developed for h
 
 \begin{figure} %reference https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions for [!h] options on placing the figures
 \centering
-\includegraphics[width=5cm ]{./graphics/pcba.png}
+\includegraphics[width=5cm ]{../graphics/pcb_top.png}
 \centering
 \caption{Custom PCBA}
 \label{fig:pcb}
@@ -549,7 +549,7 @@ A custom printed circuit board assembly in Fig~\ref{fig:pcb} was developed for h
 TBD
 \subsection{Bluetooth Communication}
 
-Bluetooth Low Energy (BLE) was chosen as the communication method to the platform. A wireless method provides for user conveinience as tethering is not required, but also provides for isolation from noise generating computers and other equipment. There a numerous wireless protocols that can be used for interfacing to microcontrollers, but given the prevalence of BLE capable smartphones, this seems to be the obvious choice. A custom Bluetooth Low Energy service was implemented on the PSoC 4 BLE device. The Bluetooth service is composed of multiple characteristics. There are a reflection of all of the available registers on the AD5933. The result register includes the real and imaginary result from the AD5933, but also the frequency, transmit and receive multiplexer state and current time. 
+Bluetooth Low Energy (BLE) was chosen as the communication method to the platform. A wireless method provides for user conveinience as tethering is not required, but also provides for isolation from noise generating computers and other equipment. There a numerous wireless protocols that can be used for interfacing to microcontrollers, but given the prevalence of BLE capable smartphones, this seems to be the obvious choice. A custom Bluetooth Low Energy service shown in Fig~\ref{fig:ble} was implemented on the PSoC 4 BLE device. The Bluetooth service is composed of multiple characteristics. These are a reflection of all of the available registers on the AD5933, with some additional parameters. The result register includes the real and imaginary result from the AD5933, but also the frequency, transmit and receive multiplexer state and current time. A characteristic is also provide to indicate the initial and final multiplexer positions.  
 
 \begin{figure} %reference https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions for [!h] options on placing the figures
 \centering
@@ -575,14 +575,7 @@ TBD
 
 
 \section {Related Work}
-
-
-
-% \tt{
-% class DefaultFPGARoccConfig \newline
-% class DefaultFPGA32KBL2Config \newline
-% class DefaultFPGA256KBL2Config \newline
-% class DefaultFPGADualCoreConfig}\rm{}
+There are existing solutions that serve as portable impedance platforms, some of which have a 2D modality.. Bogonez \cite{bogonez-franco_implantable_2009}, \cite{bogonez-franco_implantable_2012} demonstrated an implantable bioimpedance solution targeting livestock. The justification was made for a solution that didn't involve wires, be it wireless or local data logging.  
 
 
 
